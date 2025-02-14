@@ -1,13 +1,35 @@
 {
-  "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+  "name": "tani-web-sdks",
+  "version": "1.0.0",
+  "description": "Tani web SDKs",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w"
   },
-  "dependencies": {
-    "axios": "^1.7.9"
-  },
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "@types/node": "^22.13.1",
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/react": "^19.0.8",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "rollup": "^4.34.6",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "tslib": "^2.8.1",
     "typescript": "^5.7.3"
+  },
+  "peerDependencies": {
+    "react": ">=18"
   }
 }
