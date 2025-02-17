@@ -64,7 +64,7 @@ const WebCamComponent:React.FC<WebCamProps> = ({setImageFile, setImageSrc, image
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 ">
+    <div className="flex flex-col items-center gap-4 bg-white p-16 pt-12 rounded-md">
         <div>
             <h5 className="font-semibold">Capture Image</h5>
             <p className='text-sm text-gray-500'>

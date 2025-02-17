@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from 'axios';
+import axios from 'axios';
 
 const baseURL = 'https://api.usetani.ai/api/v0';
 

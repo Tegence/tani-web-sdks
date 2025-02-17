@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import WebCamComponent  from './utils/Webcam';
 import './global.css'
-import axios from './api/axios'
+import axios from './api/useAxios'
 
 
 const EnrollUser:React.FC = () => {
@@ -14,12 +14,11 @@ const EnrollUser:React.FC = () => {
       // try {
       //   const response = await axios.post('/persons/create-with-image', {
       //     person_name:inputName,
+      //     group_id:'6gdgdgd',
       //     image:imageFile
       //   }, {
       //     headers: {
       //       'Content-Type': 'application/json',
-      //       'x-api-key': apiKey,
-      //       'x-group-id': groupId,
       //     },
       //   });
       //   console.log(response);

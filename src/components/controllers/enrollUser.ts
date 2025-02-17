@@ -1,4 +1,4 @@
-import axios from '../api/axios'
+import axios from '../api/useAxios'
 import { TaniAuth } from './TaniAuth';
 
 export const enrollUser = async (auth: TaniAuth, person_name: string, client_id: string, image:File): Promise<boolean> => {
