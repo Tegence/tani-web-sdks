@@ -6,6 +6,10 @@ export class TaniAuth {
       this.apiKey = apiKey;
       this.groupId = groupId;
     }
+
+    getGroupId(): string {
+      return this.groupId;
+    }
   
     getHeaders(): Record<string, string> {
       return {

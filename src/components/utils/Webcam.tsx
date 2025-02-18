@@ -1,15 +1,19 @@
-import React, { useRef, useState,useCallback } from "react";
+import React, { forwardRef, useRef, useState,useCallback, useImperativeHandle } from "react";
 import Webcam from "react-webcam";
 import { AiOutlineCamera } from "react-icons/ai";
 import { PiCamera, PiCloudArrowUp } from 'react-icons/pi';
-import { WebCamProps } from '../../types/webcamTypes';
+import { WebCamProps } from '../../types/WebcamTypes';
 import {
   convertBase64StringToFile,
   handleImageCompression,
 } from '../lib/helpers';
 import { useDropzone } from 'react-dropzone';
 
-const WebCamComponent:React.FC<WebCamProps> = ({setImageFile, setImageSrc, imageSrc}) => {
+export interface WebcamRef {
+  close_camera: () => void;
+}
+
+const WebCamComponent = forwardRef(({setImageFile, setImageSrc, imageSrc}:WebCamProps, ref) => {
   const webcamRef = useRef<Webcam>(null);
   const [displayCamera, setDisplayCamera] = useState(false);
 
@@ -19,7 +23,7 @@ const WebCamComponent:React.FC<WebCamProps> = ({setImageFile, setImageSrc, image
     if (imageSrc) {
       setImageSrc(imageSrc);
       setImageFile(
-        convertBase64StringToFile(imageSrc, `${user?.name}-${Date.now()}.jpg`)
+        convertBase64StringToFile(imageSrc, `unknown-${Date.now()}.jpg`)
       );
     }
   };
@@ -62,6 +66,12 @@ const WebCamComponent:React.FC<WebCamProps> = ({setImageFile, setImageSrc, image
       }
     }
   };
+  useImperativeHandle(ref, () => ({
+    close_camera: () => {
+      setDisplayCamera(false);
+      setImageSrc(null);
+    },
+  }));
 
   return (
     <div className="flex flex-col items-center gap-4 bg-white p-16 pt-12 rounded-md">
@@ -183,6 +193,6 @@ const WebCamComponent:React.FC<WebCamProps> = ({setImageFile, setImageSrc, image
         }
     </div>
   );
-};
+});
 
 export default WebCamComponent;

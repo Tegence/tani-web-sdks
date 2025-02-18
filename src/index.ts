@@ -1,1 +1,1 @@
-export { default as Page } from "./components/page";
+export { default as EnrollUser } from "./components/EnrollUser";

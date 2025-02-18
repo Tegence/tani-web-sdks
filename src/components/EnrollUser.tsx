@@ -1,41 +1,73 @@
 import React, { useRef, useState, useEffect } from 'react';
-import WebCamComponent  from './utils/Webcam';
+import WebCamComponent, { WebcamRef }  from './utils/Webcam';
+import Dialog from './utils/Dialog';
 import './global.css'
 import axios from './api/useAxios'
+import { TaniAuthTypes } from '../types/TaniAuthTypes';
 
-
-const EnrollUser:React.FC = () => {
+const EnrollUser:React.FC<TaniAuthTypes> = ({authInstance}) => {
     const inputRef = useRef<HTMLInputElement>(null);
+    const webCamRef = useRef<WebcamRef | null>(null);
     const [inputName, setInputName] = useState<string>('');
     const [imageSrc, setImageSrc] = useState<string | null>(null)
     const [imageFile, setImageFile] = useState<File | null>(null)
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [uploadCompleted, setUploadCompleted] = useState<boolean>(false)
+    const [uploadError, setUploadError] = useState<boolean>(false)
+    const [openDialog, setOpenDialog] = useState<boolean>(false)
+  
 
     const create_person_with_image = async () => {
-      // try {
-      //   const response = await axios.post('/persons/create-with-image', {
-      //     person_name:inputName,
-      //     group_id:'6gdgdgd',
-      //     image:imageFile
-      //   }, {
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //   });
-      //   console.log(response);
-      // } catch (error) {
-      //   // return handleApiError(error);
-      // }
+      setIsLoading(true)
+      setOpenDialog(true)
+
+      try {
+        if(imageFile){
+          setIsLoading(true);
+          const file = imageFile;
+          const formData = new FormData();
+          formData.append('person_name', inputName);
+          const group_id = authInstance.getGroupId();
+          if (group_id) {
+            formData.append('group_id', group_id);
+          }
+          formData.append('image', file);
+          // console.log("form data",formData)
+        
+          const response = await axios.post('/persons/create-with-image', 
+            formData
+          , {
+            headers: authInstance.getHeaders(),
+          });
+          setIsLoading(false);
+          setUploadCompleted(true);
+          setOpenDialog(true)
+          // console.log(response);
+        }
+      } catch (error) {
+        console.error(error);
+        setIsLoading(false)
+        setUploadError(true);
+        setOpenDialog(true)
+
+      }
     };
+
 
     useEffect(() => {
       if (inputRef.current) {
         inputRef.current.focus();
       }
     }, []);
+
+    console.log(inputName)
+    console.log("file",imageFile)
+    console.log("src",imageSrc)
+    
  
 
   return (
-    <div className='mx-auto mt-10 w-fit rounded-md bg-white p-5'>
+    <div className='mx-auto mt-10 w-fit rounded-md bg-white p-5 relative'>
         <div className='mb-3 border-b border-gray-300 py-3 text-gray-700'>
           <h4 className='font-bold'>Create a new user</h4>
           <p className='text-sm'>
@@ -59,6 +91,7 @@ const EnrollUser:React.FC = () => {
           setImageFile={setImageFile}
           setImageSrc={setImageSrc}
           imageSrc={imageSrc}
+          ref={webCamRef}
         />
         {imageSrc && (
           <div className='flex justify-end'>
@@ -70,6 +103,39 @@ const EnrollUser:React.FC = () => {
             </button>
           </div>
         )}
+        { openDialog && <Dialog closeDialog={() => setOpenDialog(false)}>
+          <div className='flex justify-center'>
+              {imageSrc && (
+                <div className='relative h-fit w-2/3 rounded-md bg-white shadow-md mb-3'>
+                  <img
+                    src={imageSrc}
+                    alt='Selected Image'
+                    style={{ objectFit: 'scale-down' }}
+                    className='rounded-md'
+                  />
+                </div>
+              )}
+            </div>
+            {isLoading && (
+              <div className='flex flex-col items-center justify-center'>
+                <div className='border-t-[#4327B2] h-16 w-16 animate-spin rounded-full border-4 border-t-4 border-gray-200'></div>
+                <h4 className='mt-3 text-xl font-bold'>Uploading Image</h4>
+              </div>
+            )}
+            {uploadCompleted && !isLoading && (
+              <div className='flex flex-col items-center justify-center'>
+                <h4 className='mt-3 text-xl font-bold'>
+                  Person added successfully
+                </h4>
+              </div>
+            )}
+            {uploadError && !isLoading && (
+              <div className='flex flex-col items-center justify-center'>
+                <h4 className='mt-3 text-xl font-bold'>Unable To Add Person</h4>
+              </div>
+            )}
+        </Dialog>
+        }
     </div>
   )
 }
