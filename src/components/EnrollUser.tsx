@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import WebCamComponent, { WebcamRef }  from './utils/Webcam';
 import Dialog from './utils/Dialog';
 import './global.css'
@@ -53,6 +53,14 @@ const EnrollUser:React.FC<TaniAuthTypes> = ({authInstance}) => {
       }
     };
 
+    const close_camera = useCallback(() => {
+      setImageSrc(null);
+      setUploadCompleted(false);
+      setIsLoading(false);
+      setUploadError(false);
+      webCamRef.current?.close_camera();
+    }, []);
+
 
     useEffect(() => {
       if (inputRef.current) {
@@ -60,9 +68,9 @@ const EnrollUser:React.FC<TaniAuthTypes> = ({authInstance}) => {
       }
     }, []);
 
-    console.log(inputName)
-    console.log("file",imageFile)
-    console.log("src",imageSrc)
+    // console.log(inputName)
+    // console.log("file",imageFile)
+    // console.log("src",imageSrc)
     
  
 
@@ -103,7 +111,7 @@ const EnrollUser:React.FC<TaniAuthTypes> = ({authInstance}) => {
             </button>
           </div>
         )}
-        { openDialog && <Dialog closeDialog={() => setOpenDialog(false)}>
+        { openDialog && <Dialog closeDialog={() => {setOpenDialog(false); close_camera()}}>
           <div className='flex justify-center'>
               {imageSrc && (
                 <div className='relative h-fit w-2/3 rounded-md bg-white shadow-md mb-3'>

@@ -13,7 +13,7 @@ export interface WebcamRef {
   close_camera: () => void;
 }
 
-const WebCamComponent = forwardRef(({setImageFile, setImageSrc, imageSrc}:WebCamProps, ref) => {
+const WebCamComponent = forwardRef(({setImageFile, setImageSrc, imageSrc, backgroundStyle}:WebCamProps, ref) => {
   const webcamRef = useRef<Webcam>(null);
   const [displayCamera, setDisplayCamera] = useState(false);
 
@@ -74,7 +74,7 @@ const WebCamComponent = forwardRef(({setImageFile, setImageSrc, imageSrc}:WebCam
   }));
 
   return (
-    <div className="flex flex-col items-center gap-4 bg-white p-16 pt-12 rounded-md">
+    <div className={`flex flex-col items-center gap-4 ${backgroundStyle ? backgroundStyle:'bg-white'} p-16 pt-12 rounded-md`}>
         <div>
             <h5 className="font-semibold">Capture Image</h5>
             <p className='text-sm text-gray-500'>
