@@ -9,16 +9,16 @@ export default {
   
   const Template: StoryFn<typeof CompareFaces> = () => <CompareFaces />;
   
-  export const EnrollTest = Template.bind({});
-  EnrollTest.args = {
+  export const CompareTest = Template.bind({});
+  CompareTest.args = {
     title: "Default theme",
     theme: "primary",
-    testIdPrefix: "enroll",
+    testIdPrefix: "compare",
   };
   
-  export const EnrollSecondary = Template.bind({});
-  EnrollSecondary.args = {
+  export const CompareSecondary = Template.bind({});
+  CompareSecondary.args = {
     title: "Secondary theme",
     theme: "secondary",
-    testIdPrefix: "enroll",
+    testIdPrefix: "compare",
   };

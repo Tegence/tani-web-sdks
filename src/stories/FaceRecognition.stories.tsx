@@ -9,16 +9,16 @@ export default {
   
   const Template: StoryFn<typeof FaceRecognition> = () => <FaceRecognition />;
   
-  export const EnrollTest = Template.bind({});
-  EnrollTest.args = {
+  export const FaceTest = Template.bind({});
+  FaceTest.args = {
     title: "Default theme",
     theme: "primary",
-    testIdPrefix: "enroll",
+    testIdPrefix: "face",
   };
   
-  export const EnrollSecondary = Template.bind({});
-  EnrollSecondary.args = {
+  export const FaceSecondary = Template.bind({});
+  FaceSecondary.args = {
     title: "Secondary theme",
     theme: "secondary",
-    testIdPrefix: "enroll",
+    testIdPrefix: "face",
   };
