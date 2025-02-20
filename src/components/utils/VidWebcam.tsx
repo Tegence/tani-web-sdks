@@ -182,7 +182,7 @@ const VidWebCam = forwardRef(
                 {instructions}
               </p>
               <button
-                className='mx-auto block'
+                className='mx-auto block py-2 text-white bg-[#4327B2] border-[#4327B2] border-[1px] px-5 rounded-md cursor-pointer'
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
@@ -214,7 +214,7 @@ const VidWebCam = forwardRef(
                     e.stopPropagation();
                     setDisplayCamera(true);
                   }}
-                  className='flex-grow basis-10 md:basis-10'
+                  className='flex-grow basis-10 md:basis-10 hover:bg-[#B9AEE7] text-[#4327B2] border-[#4327B2] border-[1px] px-4 py-2 rounded-md cursor-pointer'
                 >
                   Open Camera
                 </button>

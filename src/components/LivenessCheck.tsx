@@ -37,7 +37,7 @@ const LivenessCheck = () => {
       { openDialog && <Dialog closeDialog={() => {setOpenDialog(false);}}>
         <div className='flex justify-center p-6'>
             {message && (
-              <div className='relative flex h-52 w-2/3 flex-col items-center justify-center rounded-md bg-white shadow-md'>
+              <div className='relative flex h-52 w-full px-6 flex-col items-center justify-center rounded-md bg-white'>
                 <h5 className='mb-2 text-center'>{message}</h5>
                 <div>
                   <div>
