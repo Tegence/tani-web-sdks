@@ -5,7 +5,7 @@ import './global.css'
 import axios from './api/useAxios'
 import { TaniAuthTypes } from '../types/TaniAuthTypes';
 
-const EnrollUser:React.FC<TaniAuthTypes> = ({authInstance}) => {
+const EnrollUser:React.FC<TaniAuthTypes> = ({authInstance, onSuccess}) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const webCamRef = useRef<WebcamRef | null>(null);
     const [inputName, setInputName] = useState<string>('');
@@ -22,7 +22,7 @@ const EnrollUser:React.FC<TaniAuthTypes> = ({authInstance}) => {
       setOpenDialog(true)
 
       try {
-        if(imageFile){
+        if(imageFile && inputName){
           setIsLoading(true);
           const file = imageFile;
           const formData = new FormData();
@@ -34,7 +34,7 @@ const EnrollUser:React.FC<TaniAuthTypes> = ({authInstance}) => {
           formData.append('image', file);
           // console.log("form data",formData)
         
-          const response = await axios.post('/persons/create-with-image', 
+          await axios.post('/persons/create-with-image', 
             formData
           , {
             headers: authInstance.getHeaders(),
@@ -42,6 +42,7 @@ const EnrollUser:React.FC<TaniAuthTypes> = ({authInstance}) => {
           setIsLoading(false);
           setUploadCompleted(true);
           setOpenDialog(true)
+          onSuccess("person added successfully")
           // console.log(response);
         }
       } catch (error) {
@@ -68,9 +69,6 @@ const EnrollUser:React.FC<TaniAuthTypes> = ({authInstance}) => {
       }
     }, []);
 
-    // console.log(inputName)
-    // console.log("file",imageFile)
-    // console.log("src",imageSrc)
     
  
 

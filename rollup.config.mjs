@@ -4,6 +4,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import dts from "rollup-plugin-dts";
 import postcss from "rollup-plugin-postcss";
 import packageJson from "./package.json" with { type: "json" };
+import json from "@rollup/plugin-json"; // Ensure JSON plugin is imported
 
 
 export default [
@@ -11,12 +12,12 @@ export default [
       input: "src/index.ts",
       output: [
         {
-          file: packageJson.main,
+          file: "dist/index.esm.js",
           format: "cjs",
           sourcemap: true,
         },
         {
-          file: packageJson.module,
+          file: "dist/index.cjs",
           format: "esm",
           sourcemap: true,
         },
@@ -24,11 +25,12 @@ export default [
       plugins: [
         resolve(),
         commonjs(),
+        json(),
         typescript({
           tsconfig: "./tsconfig.json",
           exclude: ["**/*.test.tsx", "**/*.test.ts", "**/*.stories.ts"],
           declaration: true, // Generate .d.ts files
-          declarationDir: 'dist/types', // Output directory for .d.ts files
+          declarationDir: './dist/types', // Output directory for .d.ts files
           outDir: 'dist', // Output directory for compiled JS files
         }),
         postcss({ extensions: [".css"], inject: true, extract: false }),

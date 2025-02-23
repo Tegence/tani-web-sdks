@@ -1,12 +1,13 @@
-import React, { useRef, useState, useCallback } from 'react';
+import { useRef, useState, useCallback } from 'react';
 import WebCamComponent, { WebcamRef }  from './utils/Webcam';
 import { FacesSimilarity } from '../types/FaceSimiliarity';
 import Dialog from './utils/Dialog';
 import './global.css'
 import axios from './api/useAxios'
 import { AxiosError } from "axios";
+import { TaniAuthTypes } from '../types/TaniAuthTypes';
 
-const CompareFaces = () => {
+const CompareFaces:React.FC<TaniAuthTypes> = ({authInstance, onSuccess}) => {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [capturedImage, setCapturedImage] = useState<string | null>(null);
@@ -28,28 +29,25 @@ const CompareFaces = () => {
                 setIsLoading(true);
                 setComparedImages([capturedImage ?? '', capturedImage2 ?? '']);
                 const formData = new FormData();
-                console.log(selectedFile, imageFile);
+                // console.log(selectedFile, imageFile);
                 formData.append('image1', selectedFile);
                 formData.append('image2', imageFile);
             
                 const response = await axios.post('/persons/compare', 
                 formData
                 , {
-                // headers: authInstance.getHeaders(),
-                    headers: {
-                    'x-api-key': 'ykru2gKctIAmpLETxx0buQ',
-                    'x-group-id': 'd2ea1214-22fd-4512-9844-577bdab9ccd5',
-                    },
+                    headers: authInstance.getHeaders(),
                 });
                 setIsLoading(false);
                 // console.log(response);
                 setFacesSimilarity(response.data);
+                onSuccess(response.data)
                 setOpenDialog(true);
             }
         }catch(err){
-            const axiosError = err as AxiosError;
+            const axiosError = err as AxiosError<{ detail?: string }>;
             if(AxiosError){
-                setError(axiosError?.response?.data?.detail)
+                setError(axiosError?.response?.data?.detail || "An error occurred")
             }
             // console.log(err);
             setIsLoading(false)
@@ -118,7 +116,7 @@ const CompareFaces = () => {
                     src={image}
                     alt='Selected Image'
                     style={{ objectFit: 'scale-down' }}
-                    className='selected-image rounded-md'
+                    className='selected-image rounded-md mx-auto'
                     />
                 </div>
                 ))}
@@ -130,8 +128,8 @@ const CompareFaces = () => {
                 </div>
             )}
             {error !== null && (
-                <div className='text-center'>
-                    <h5 className=''>{error}</h5>
+                <div className='text-center flex justify-center items-center'>
+                    <h5 className='w-1/2'>{error}</h5>
                 </div>
             )}
             {facesSimilarity && (
@@ -143,14 +141,6 @@ const CompareFaces = () => {
                     {(facesSimilarity.similarity_score * 100).toFixed(2)}%
                 </h2>
                 <p className='text-gray-500'>{facesSimilarity.message}</p>
-                <button
-                    onClick={() => {
-                        setOpenDialog(false);
-                    }}
-                    className='mt-5'
-                >
-                    Compare Again
-                </button>
                 </div>
             )}
           </div>

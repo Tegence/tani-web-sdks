@@ -10,15 +10,15 @@ export default {
   const Template: StoryFn<typeof LivenessCheck> = () => <LivenessCheck />;
   
   export const LivenessTest = Template.bind({});
-  LivenessTest.args = {
-    title: "Default theme",
-    theme: "primary",
-    testIdPrefix: "liveness",
-  };
+  // LivenessTest.args = {
+  //   title: "Default theme",
+  //   theme: "primary",
+  //   testIdPrefix: "liveness",
+  // };
   
   export const LivenessSecondary = Template.bind({});
-  LivenessSecondary.args = {
-    title: "Secondary theme",
-    theme: "secondary",
-    testIdPrefix: "liveness",
-  };
+  // LivenessSecondary.args = {
+  //   title: "Secondary theme",
+  //   theme: "secondary",
+  //   testIdPrefix: "liveness",
+  // };

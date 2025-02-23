@@ -5,8 +5,9 @@ import './global.css'
 import axios from './api/useAxios'
 import { ProbableUser } from '../types/ProbableUser';
 import { AxiosError } from "axios";
+import { TaniAuthTypes } from '../types/TaniAuthTypes';
 
-const FaceRecognition:React.FC = () => {
+const FaceRecognition:React.FC<TaniAuthTypes> = ({authInstance, onSuccess}) => {
     const [imageSrc, setImageSrc] = useState<string | null>(null)
     const [imageFile, setImageFile] = useState<File | null>(null)
     const webCamRef = useRef<WebcamRef | null>(null);
@@ -31,24 +32,22 @@ const FaceRecognition:React.FC = () => {
           const response = await axios.post('/persons/authenticate', 
             formData
           , {
-            // headers: authInstance.getHeaders(),
-              headers: {
-                'x-api-key': 'ykru2gKctIAmpLETxx0buQ',
-                'x-group-id': 'd2ea1214-22fd-4512-9844-577bdab9ccd5',
-              },
+              headers: authInstance.getHeaders(),
           });
           setIsLoading(false);
-          console.log(response);
+          // console.log(response);
           setProbableUser(response.data.potential_match);
           setSimilarityScore(response.data.similarity_score);
+          onSuccess(response.data)
           setOpenDialog(true);
               
         }
       } catch (err) {
           setIsLoading(false)
-          const axiosError = err as AxiosError;
+          const axiosError = err as AxiosError<{ detail?: string }>;
           if(AxiosError){
-              setError(axiosError?.response?.data?.detail)
+              setError(axiosError?.response?.data?.detail || "An error occurred")
+              //onSuccess("an error happened")
           }
           //console.error(err);
           setOpenDialog(true)
@@ -106,7 +105,7 @@ const FaceRecognition:React.FC = () => {
                     src={imageSrc}
                     alt='Selected Image'
                     style={{ objectFit: 'scale-down' }}
-                    className='rounded-md'
+                    className='rounded-md mx-auto'
                   />
                 </div>
               )}
@@ -126,20 +125,11 @@ const FaceRecognition:React.FC = () => {
                   probability that you're
                   <strong> {probableUser._source.person_name}</strong>
                 </p>
-                <button
-                  onClick={() => {
-                    close_camera();
-                    setOpenDialog(false);
-                  }}
-                  className='mt-5'
-                >
-                  Compare Again
-                </button>
               </div>
             )}
             {error !== null &&(
               <div className='flex flex-col items-center justify-center'>
-                <h4 className='mt-3 text-xl font-bold'>{error}</h4>
+                <h4 className='mt-3 text-xl font-bold w-1/2'>{error}</h4>
               </div>
             )}
         </Dialog>

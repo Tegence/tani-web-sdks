@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useRef, useState } from 'react';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 import {
   buildStyles,
   CircularProgressbarWithChildren,
@@ -21,7 +21,6 @@ const VidWebCam = forwardRef(
       title,
       setResult,
     }: VidWebCamProps,
-    ref
   ) => {
     const [displayCamera, setDisplayCamera] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -73,6 +72,7 @@ const VidWebCam = forwardRef(
 
       socketRef.current.onerror = (error) => {
         // setResponse(prev => prev + `WebSocket error: ${error.toString()}\n`);
+        console.error(error)
       };
 
       return () => {
@@ -175,7 +175,7 @@ const VidWebCam = forwardRef(
                       className='w-full scale-[1.33]'
                       style={{ clipPath: 'circle(40%)' }}
                     />
-                  </CircularProgressbarWithChildren>
+                  </CircularProgressbarWithChildren> 
                 </div>
               </div>
               <p className='my-4 text-center text-lg text-gray-700'>

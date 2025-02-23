@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import VidWebCam from './utils/VidWebcam'
 import { LivenessDetection } from '../types/WebcamTypes';
 import Dialog from './utils/Dialog';
