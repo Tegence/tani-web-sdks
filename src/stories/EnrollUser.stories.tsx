@@ -1,7 +1,7 @@
 
 import { StoryFn, Meta } from "@storybook/react";
 
-import EnrollUser from '../components/EnrollUser'
+import {EnrollUser} from '../components/EnrollUser'
 import { TaniAuth } from "../components/controllers/TaniAuth";
 
 export default {

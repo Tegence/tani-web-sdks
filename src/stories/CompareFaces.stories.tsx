@@ -1,6 +1,6 @@
 import { StoryFn, Meta } from "@storybook/react";
 
-import CompareFaces from '../components/CompareFaces'
+import {CompareFaces} from '../components/CompareFaces'
 import { TaniAuth } from "../components/controllers/TaniAuth";
 
 export default {

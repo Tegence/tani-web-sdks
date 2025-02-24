@@ -5,7 +5,7 @@ import './global.css'
 import axios from './api/useAxios'
 import { TaniAuthTypes } from '../types/TaniAuthTypes';
 
-const EnrollUser:React.FC<TaniAuthTypes> = ({authInstance, onSuccess}) => {
+export const EnrollUser:React.FC<TaniAuthTypes> = ({authInstance, onSuccess}) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const webCamRef = useRef<WebcamRef | null>(null);
     const [inputName, setInputName] = useState<string>('');
@@ -146,4 +146,4 @@ const EnrollUser:React.FC<TaniAuthTypes> = ({authInstance, onSuccess}) => {
   )
 }
 
-export default EnrollUser
+

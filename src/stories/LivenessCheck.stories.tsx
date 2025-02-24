@@ -1,6 +1,6 @@
 import { StoryFn, Meta } from "@storybook/react";
 
-import LivenessCheck from '../components/LivenessCheck'
+import {LivenessCheck} from '../components/LivenessCheck'
 
 export default {
     title: "ReactComponentLibrary/livenessCheck",

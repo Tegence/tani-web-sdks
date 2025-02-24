@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   buildStyles,
   CircularProgressbarWithChildren,
@@ -12,7 +12,7 @@ export interface WebcamRef {
   close_camera: () => void;
 }
 
-const VidWebCam = forwardRef(
+const VidWebCam = (
   (
     {
       setMessage,
@@ -20,7 +20,7 @@ const VidWebCam = forwardRef(
       setOpenDialog,
       title,
       setResult,
-    }: VidWebCamProps,
+    }: VidWebCamProps
   ) => {
     const [displayCamera, setDisplayCamera] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);

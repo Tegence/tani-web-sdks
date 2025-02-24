@@ -7,7 +7,7 @@ import { ProbableUser } from '../types/ProbableUser';
 import { AxiosError } from "axios";
 import { TaniAuthTypes } from '../types/TaniAuthTypes';
 
-const FaceRecognition:React.FC<TaniAuthTypes> = ({authInstance, onSuccess}) => {
+export const FaceRecognition:React.FC<TaniAuthTypes> = ({authInstance, onSuccess}) => {
     const [imageSrc, setImageSrc] = useState<string | null>(null)
     const [imageFile, setImageFile] = useState<File | null>(null)
     const webCamRef = useRef<WebcamRef | null>(null);
@@ -138,4 +138,4 @@ const FaceRecognition:React.FC<TaniAuthTypes> = ({authInstance, onSuccess}) => {
   )
 }
 
-export default FaceRecognition
+

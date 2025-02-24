@@ -7,7 +7,7 @@ import axios from './api/useAxios'
 import { AxiosError } from "axios";
 import { TaniAuthTypes } from '../types/TaniAuthTypes';
 
-const CompareFaces:React.FC<TaniAuthTypes> = ({authInstance, onSuccess}) => {
+export const CompareFaces:React.FC<TaniAuthTypes> = ({authInstance, onSuccess}) => {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [capturedImage, setCapturedImage] = useState<string | null>(null);
@@ -150,5 +150,3 @@ const CompareFaces:React.FC<TaniAuthTypes> = ({authInstance, onSuccess}) => {
     </div>
   )
 }
-
-export default CompareFaces

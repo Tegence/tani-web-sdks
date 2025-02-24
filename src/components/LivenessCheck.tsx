@@ -4,7 +4,7 @@ import { LivenessDetection } from '../types/WebcamTypes';
 import Dialog from './utils/Dialog';
 import './global.css'
 
-const LivenessCheck = () => {
+export  const LivenessCheck = () => {
     const [message, setMessage] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [result, setResult] = useState<LivenessDetection | null>(null);
@@ -86,4 +86,3 @@ const LivenessCheck = () => {
   )
 }
 
-export default LivenessCheck

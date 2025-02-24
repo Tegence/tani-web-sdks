@@ -1,6 +1,6 @@
 import { StoryFn, Meta } from "@storybook/react";
 
-import FaceRecognition from '../components/FaceRecognition'
+import {FaceRecognition} from '../components/FaceRecognition'
 import { TaniAuth } from "../components/controllers/TaniAuth";
 
 export default {
