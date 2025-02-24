@@ -10599,14 +10599,12 @@ const CompareFaces = ({ authInstance, onSuccess }) => {
                 setIsLoading(true);
                 setComparedImages([capturedImage ?? '', capturedImage2 ?? '']);
                 const formData = new FormData();
-                // console.log(selectedFile, imageFile);
                 formData.append('image1', selectedFile);
                 formData.append('image2', imageFile);
                 const response = await axios.post('/persons/compare', formData, {
                     headers: authInstance.getHeaders(),
                 });
                 setIsLoading(false);
-                // console.log(response);
                 setFacesSimilarity(response.data);
                 onSuccess(response.data);
                 setOpenDialog(true);

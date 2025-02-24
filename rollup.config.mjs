@@ -37,7 +37,7 @@ export default [
           declarationDir: 'dist/types', // Output directory for .d.ts files
           outDir: 'dist', // Output directory for compiled JS files
         }),
-        postcss({ extensions: [".css"], inject: false, extract: "styles.css", minimize: true }),
+        postcss({ extensions: [".css"], inject: true, extract: "styles.css", minimize: true }),
       ],
       external: ["react", "react-dom", "react/jsx-runtime", "fs", "path"],
     },

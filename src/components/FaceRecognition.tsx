@@ -1,7 +1,7 @@
 import React, { useState, useRef, useCallback } from 'react'
 import WebCamComponent, { WebcamRef }  from './utils/Webcam';
 import Dialog from './utils/Dialog';
-import './global.css'
+import "../global.css"
 import axios from './api/useAxios'
 import { ProbableUser } from '../types/ProbableUser';
 import { AxiosError } from "axios";

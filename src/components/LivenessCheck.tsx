@@ -2,7 +2,7 @@ import {useState} from 'react'
 import VidWebCam from './utils/VidWebcam'
 import { LivenessDetection } from '../types/WebcamTypes';
 import Dialog from './utils/Dialog';
-import './global.css'
+import "../global.css"
 
 export  const LivenessCheck = () => {
     const [message, setMessage] = useState<string | null>(null);

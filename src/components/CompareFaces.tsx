@@ -2,7 +2,7 @@ import { useRef, useState, useCallback } from 'react';
 import WebCamComponent, { WebcamRef }  from './utils/Webcam';
 import { FacesSimilarity } from '../types/FaceSimiliarity';
 import Dialog from './utils/Dialog';
-import './global.css'
+import "../global.css"
 import axios from './api/useAxios'
 import { AxiosError } from "axios";
 import { TaniAuthTypes } from '../types/TaniAuthTypes';
