@@ -10563,8 +10563,18 @@ const FaceRecognition = ({ authInstance, onSuccess }) => {
             setIsLoading(false);
             const axiosError = err;
             if (AxiosError) {
-                setError(axiosError?.response?.data?.detail || "An error occurred");
-                //onSuccess("an error happened")
+                if (axiosError.status === 400) {
+                    setError("No Faces Detected in one or both images. Kindly take a clearer picture and try again");
+                }
+                if (axiosError.status === 404) {
+                    setError("We could not find a match for the uploaded image");
+                }
+                if (axiosError.status === 401) {
+                    setError("API key/Group Id is missing");
+                }
+                if (axiosError.status === 500) {
+                    setError("Internal server error");
+                }
             }
             //console.error(err);
             setOpenDialog(true);
@@ -10613,7 +10623,15 @@ const CompareFaces = ({ authInstance, onSuccess }) => {
         catch (err) {
             const axiosError = err;
             if (AxiosError) {
-                setError(axiosError?.response?.data?.detail || "An error occurred");
+                if (axiosError.status === 400) {
+                    setError("No Faces Detected in one or both images. Kindly take a clearer picture and try again");
+                }
+                if (axiosError.status === 401) {
+                    setError("API key/Group Id is missing");
+                }
+                if (axiosError.status === 500) {
+                    setError("Internal server error");
+                }
             }
             // console.log(err);
             setIsLoading(false);
