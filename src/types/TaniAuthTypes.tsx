@@ -18,3 +18,9 @@ export type TaniAuthTypes = {
     authInstance: TaniAuth;
     onSuccess: (apiResponse: string | FaceComparisonResult | FaceRecognitionResult) => void;
 };
+
+export type FaceCompareProps = {
+    authInstance: TaniAuth;
+    onSuccess: (apiResponse: string | FaceComparisonResult | FaceRecognitionResult) => void;
+    imageUrl: string;
+};

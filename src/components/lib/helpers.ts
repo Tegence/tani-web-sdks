@@ -28,7 +28,26 @@ export const handleImageCompression = async (file: File) => {
       const compressedFile = await imageCompression(file, options);
       return compressedFile;
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return;
+    }
+};
+
+export const fetchAndProcessImage = async (imageUrl: string, fileName: string) => {
+    try {
+      const response = await fetch(imageUrl);
+      const blob = await response.blob();
+      const file = new File([blob], fileName, { type: blob.type });
+  
+      const compressedFile = await handleImageCompression(file);
+      if(compressedFile){
+        return new File([compressedFile], file.name, { type: file.type });
+      }else{
+        return file;
+      }
+      
+    } catch (error) {
+      console.error("Error fetching or processing image:", error);
+      return null;
     }
 };

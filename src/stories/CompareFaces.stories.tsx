@@ -13,7 +13,7 @@ export default {
     console.log(result)
   }
   
-  const Template: StoryFn<typeof CompareFaces> = () => <CompareFaces authInstance={authInstance} onSuccess={handleSuccess}/>;
+  const Template: StoryFn<typeof CompareFaces> = () => <CompareFaces authInstance={authInstance} onSuccess={handleSuccess} imageUrl='https://res.cloudinary.com/df7ovxux0/image/upload/v1654623190/cld-sample.jpg'/>;
   
   export const CompareTest = Template.bind({});
   // CompareTest.args = {

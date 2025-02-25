@@ -55,11 +55,12 @@ import { FaceRecognition } from "@tegence/tani-web-sdks";
 
 🔹 Face Comparison (Compare Two Faces)
 
-import { FaceCompare } from "@tegence/tani-web-sdks";
+import { CompareFaces } from "@tegence/tani-web-sdks";
 
-<FaceCompare
+<CompareFaces
   authInstance={taniAuth}  
   onSuccess={(data) => console.log("Faces match", data)}
+  imageUrl='https://image.com'
 />
 
 ✅ Response Shape:
@@ -75,3 +76,6 @@ import { LivenessCheck } from "@tegence/tani-web-sdks";
 
 <LivenessCheck />;
 
+Also,
+import the style file.
+import "@tegence/tani-web-sdks/dist/styles.css";

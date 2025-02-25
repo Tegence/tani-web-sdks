@@ -565,8 +565,26 @@ const handleImageCompression = async (file) => {
         return compressedFile;
     }
     catch (error) {
-        console.log(error);
+        console.error(error);
         return;
+    }
+};
+const fetchAndProcessImage = async (imageUrl, fileName) => {
+    try {
+        const response = await fetch(imageUrl);
+        const blob = await response.blob();
+        const file = new File([blob], fileName, { type: blob.type });
+        const compressedFile = await handleImageCompression(file);
+        if (compressedFile) {
+            return new File([compressedFile], file.name, { type: file.type });
+        }
+        else {
+            return file;
+        }
+    }
+    catch (error) {
+        console.error("Error fetching or processing image:", error);
+        return null;
     }
 };
 
@@ -10590,7 +10608,7 @@ const FaceRecognition = ({ authInstance, onSuccess }) => {
     return (jsxRuntime.jsxs("main", { className: 'flex w-full flex-col bg-gray-100 p-8 relative', children: [jsxRuntime.jsx("h1", { className: 'font-bold text-4xl', children: "Face Search" }), jsxRuntime.jsxs("ul", { className: 'mt-3 list-inside list-disc text-gray-500', children: [jsxRuntime.jsxs("li", { children: [' ', "Click on the ", jsxRuntime.jsx("strong", { children: "Capture Face" }), " button to open the camera module."] }), jsxRuntime.jsx("li", { children: " Please make sure you allow the browser to access your camera." }), jsxRuntime.jsxs("li", { children: [' ', "Take a picture of your face and click the ", jsxRuntime.jsx("strong", { children: "Verify" }), ' ', "button to find a user that matches your face."] })] }), jsxRuntime.jsx("div", { className: 'w-fit mx-auto mt-6', children: jsxRuntime.jsx(WebCamComponent, { setImageFile: setImageFile, setImageSrc: setImageSrc, imageSrc: imageSrc, ref: webCamRef }) }), imageSrc && (jsxRuntime.jsx("div", { className: 'flex justify-end', children: jsxRuntime.jsx("button", { className: 'mt-5 py-3 text-white bg-[#4327B2] border-[#4327B2] border-[1px] px-5 rounded-md cursor-pointer', onClick: identify_user_face, children: "Verify Photo" }) })), openDialog && jsxRuntime.jsxs(Dialog, { closeDialog: () => { setOpenDialog(false); close_camera(); }, children: [jsxRuntime.jsx("div", { className: 'flex justify-center', children: imageSrc && (jsxRuntime.jsx("div", { className: 'relative h-fit w-2/3 rounded-md bg-white shadow-md mb-3', children: jsxRuntime.jsx("img", { src: imageSrc, alt: 'Selected Image', style: { objectFit: 'scale-down' }, className: 'rounded-md mx-auto' }) })) }), isLoading && (jsxRuntime.jsxs("div", { className: 'flex flex-col items-center justify-center', children: [jsxRuntime.jsx("div", { className: 'border-t-[#4327B2] h-16 w-16 animate-spin rounded-full border-4 border-t-4 border-gray-200' }), jsxRuntime.jsx("h4", { className: 'mt-3 text-xl font-bold', children: "Verifying Image" })] })), probableUser && (jsxRuntime.jsxs("div", { className: 'mt-5 text-center', children: [jsxRuntime.jsx("h4", { className: 'mb-2', children: "We have your result!" }), jsxRuntime.jsxs("p", { children: ["Based on our records, there's a", jsxRuntime.jsxs("strong", { children: [" ", (similarityScore * 100).toFixed(2), "% "] }), ' ', "probability that you're", jsxRuntime.jsxs("strong", { children: [" ", probableUser._source.person_name] })] })] })), error !== null && (jsxRuntime.jsx("div", { className: 'flex flex-col items-center justify-center', children: jsxRuntime.jsx("h4", { className: 'mt-3 text-xl font-bold w-1/2', children: error }) }))] })] }));
 };
 
-const CompareFaces = ({ authInstance, onSuccess }) => {
+const CompareFaces = ({ authInstance, onSuccess, imageUrl }) => {
     const [selectedFile, setSelectedFile] = React.useState(null);
     const [imageFile, setImageFile] = React.useState(null);
     const [capturedImage, setCapturedImage] = React.useState(null);
@@ -10645,7 +10663,27 @@ const CompareFaces = ({ authInstance, onSuccess }) => {
         setError(null);
         webCamRef.current?.close_camera();
     }, []);
-    return (jsxRuntime.jsxs("div", { className: 'mt-3 w-full rounded-md bg-white p-4 relative', children: [jsxRuntime.jsx("h1", { className: 'font-bold text-4xl', children: "Compare Faces " }), jsxRuntime.jsxs("ul", { className: 'mt-3 list-inside list-disc text-gray-500 mb-10', children: [jsxRuntime.jsxs("li", { children: [' ', "Kindly click on the ", jsxRuntime.jsx("strong", { children: "Compare Faces" }), " button to open the camera module."] }), jsxRuntime.jsx("li", { children: " Please make sure you allow the browser to access your camera." }), jsxRuntime.jsxs("li", { children: [' ', "Select a picture for your gallery as the control image, and take a real time photo of yourself to compare both images"] })] }), jsxRuntime.jsxs("div", { className: 'flex flex-wrap gap-5', children: [jsxRuntime.jsx("div", { className: 'flex-grow basis-[320px] rounded-md bg-gray-100 ', children: jsxRuntime.jsx(WebCamComponent, { setImageFile: setSelectedFile, setImageSrc: setCapturedImage2, imageSrc: capturedImage2, ref: webCamRef, backgroundStyle: "bg-gray-100" }) }), jsxRuntime.jsx("div", { className: 'relative flex-grow basis-[320px] rounded-md border border-gray-300', children: jsxRuntime.jsx(WebCamComponent, { setImageFile: setImageFile, setImageSrc: setCapturedImage, imageSrc: capturedImage, ref: webCamRef }) })] }), jsxRuntime.jsx("div", { className: 'flex justify-end', children: jsxRuntime.jsx("button", { className: 'py-3 mt-5 text-white bg-[#4327B2] border-[#4327B2] border-[1px] px-5 rounded-md cursor-pointer', onClick: compareImages, children: "Compare Faces" }) }), openDialog && jsxRuntime.jsx(Dialog, { closeDialog: () => { setOpenDialog(false); close_camera(); }, children: jsxRuntime.jsxs("div", { className: 'flex flex-col justify-center', children: [jsxRuntime.jsx("div", { className: 'flex space-x-3', children: comparedImages?.map((image, index) => (jsxRuntime.jsx("div", { className: 'relative h-fit w-1/2 rounded-md bg-white shadow-md mb-3', children: jsxRuntime.jsx("img", { src: image, alt: 'Selected Image', style: { objectFit: 'scale-down' }, className: 'selected-image rounded-md mx-auto' }) }, index))) }), isLoading && (jsxRuntime.jsxs("div", { className: 'flex flex-col items-center justify-center', children: [jsxRuntime.jsx("div", { className: 'border-t-[#4327B2] h-16 w-16 animate-spin rounded-full border-4 border-t-4 border-gray-200' }), jsxRuntime.jsx("h4", { className: 'mt-3 text-xl font-bold', children: "Comparing Images" })] })), error !== null && (jsxRuntime.jsx("div", { className: 'text-center flex justify-center items-center', children: jsxRuntime.jsx("h5", { className: 'w-1/2', children: error }) })), facesSimilarity && (jsxRuntime.jsxs("div", { className: 'mt-5 text-center', children: [jsxRuntime.jsx("p", { className: 'text-lg font-semibold text-gray-600', children: "Confidence Percentage" }), jsxRuntime.jsxs("h2", { className: 'font-bold', children: [(facesSimilarity.similarity_score * 100).toFixed(2), "%"] }), jsxRuntime.jsx("p", { className: 'text-gray-500', children: facesSimilarity.message })] }))] }) })] }));
+    React.useEffect(() => {
+        const processImage = async () => {
+            if (!imageUrl)
+                return;
+            try {
+                if (imageUrl) {
+                    const file = await fetchAndProcessImage(imageUrl, `image-${Date.now()}.jpg`);
+                    if (file) {
+                        const url = URL.createObjectURL(file);
+                        setImageFile(file);
+                        setCapturedImage(url);
+                    }
+                }
+            }
+            catch (err) {
+                console.error(err);
+            }
+        };
+        processImage();
+    }, [imageUrl]);
+    return (jsxRuntime.jsxs("div", { className: 'mt-3 w-full rounded-md bg-white p-4 relative', children: [jsxRuntime.jsx("h1", { className: 'font-bold text-4xl', children: "Compare Faces " }), jsxRuntime.jsxs("ul", { className: 'mt-3 list-inside list-disc text-gray-500 mb-10', children: [jsxRuntime.jsxs("li", { children: [' ', "Kindly click on the ", jsxRuntime.jsx("strong", { children: "Compare Faces" }), " button to open the camera module."] }), jsxRuntime.jsx("li", { children: " Please make sure you allow the browser to access your camera." }), jsxRuntime.jsxs("li", { children: [' ', "Select a picture for your gallery as the control image, and take a real time photo of yourself to compare both images"] })] }), jsxRuntime.jsx("div", { className: ' w-fit mx-auto ', children: jsxRuntime.jsx(WebCamComponent, { setImageFile: setSelectedFile, setImageSrc: setCapturedImage2, imageSrc: capturedImage2, ref: webCamRef }) }), jsxRuntime.jsx("div", { className: 'flex justify-end', children: jsxRuntime.jsx("button", { className: 'py-3 mt-5 text-white bg-[#4327B2] border-[#4327B2] border-[1px] px-5 rounded-md cursor-pointer', onClick: compareImages, children: "Compare Faces" }) }), openDialog && jsxRuntime.jsx(Dialog, { closeDialog: () => { setOpenDialog(false); close_camera(); }, children: jsxRuntime.jsxs("div", { className: 'flex flex-col justify-center', children: [jsxRuntime.jsx("div", { className: 'flex space-x-3', children: comparedImages?.map((image, index) => (jsxRuntime.jsx("div", { className: 'relative h-fit w-1/2 rounded-md bg-white shadow-md mb-3', children: jsxRuntime.jsx("img", { src: image, alt: 'Selected Image', style: { objectFit: 'scale-down' }, className: 'selected-image rounded-md mx-auto' }) }, index))) }), isLoading && (jsxRuntime.jsxs("div", { className: 'flex flex-col items-center justify-center', children: [jsxRuntime.jsx("div", { className: 'border-t-[#4327B2] h-16 w-16 animate-spin rounded-full border-4 border-t-4 border-gray-200' }), jsxRuntime.jsx("h4", { className: 'mt-3 text-xl font-bold', children: "Comparing Images" })] })), error !== null && (jsxRuntime.jsx("div", { className: 'text-center flex justify-center items-center', children: jsxRuntime.jsx("h5", { className: 'w-1/2', children: error }) })), facesSimilarity && (jsxRuntime.jsxs("div", { className: 'mt-5 text-center', children: [jsxRuntime.jsx("p", { className: 'text-lg font-semibold text-gray-600', children: "Confidence Percentage" }), jsxRuntime.jsxs("h2", { className: 'font-bold', children: [(facesSimilarity.similarity_score * 100).toFixed(2), "%"] }), jsxRuntime.jsx("p", { className: 'text-gray-500', children: facesSimilarity.message })] }))] }) })] }));
 };
 
 /*! *****************************************************************************

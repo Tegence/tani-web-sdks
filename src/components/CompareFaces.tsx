@@ -1,13 +1,14 @@
-import { useRef, useState, useCallback } from 'react';
+import { useRef, useState, useCallback, useEffect } from 'react';
 import WebCamComponent, { WebcamRef }  from './utils/Webcam';
 import { FacesSimilarity } from '../types/FaceSimiliarity';
 import Dialog from './utils/Dialog';
 import "../global.css"
 import axios from './api/useAxios'
 import { AxiosError } from "axios";
-import { TaniAuthTypes } from '../types/TaniAuthTypes';
+import { FaceCompareProps } from '../types/TaniAuthTypes';
+import {fetchAndProcessImage} from './lib/helpers'
 
-export const CompareFaces:React.FC<TaniAuthTypes> = ({authInstance, onSuccess}) => {
+export const CompareFaces:React.FC<FaceCompareProps> = ({authInstance, onSuccess, imageUrl}) => {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [capturedImage, setCapturedImage] = useState<string | null>(null);
@@ -61,6 +62,8 @@ export const CompareFaces:React.FC<TaniAuthTypes> = ({authInstance, onSuccess}) 
         
     }
 
+    
+
     const close_camera = useCallback(() => {
         setCapturedImage(null);
         setCapturedImage2(null);
@@ -69,6 +72,29 @@ export const CompareFaces:React.FC<TaniAuthTypes> = ({authInstance, onSuccess}) 
         setError(null);
         webCamRef.current?.close_camera();
     }, []);
+
+    useEffect(()=>{
+        const processImage = async() => {
+            if(!imageUrl) return;
+            try{
+                if(imageUrl){
+                    const file = await fetchAndProcessImage(imageUrl, `image-${Date.now()}.jpg`)
+                    
+                    if(file) {
+                        const url = URL.createObjectURL(file);
+                        setImageFile(file)
+                        setCapturedImage(url)
+                    }
+                }
+            }catch(err){
+                console.error(err)
+            }
+        }
+        processImage()
+        
+    }, [imageUrl])
+
+    
 
   return (
     <div className='mt-3 w-full rounded-md bg-white p-4 relative'>
@@ -86,24 +112,13 @@ export const CompareFaces:React.FC<TaniAuthTypes> = ({authInstance, onSuccess}) 
             real time photo of yourself to compare both images
             </li>
         </ul>
-        <div className='flex flex-wrap gap-5'>
-            <div className='flex-grow basis-[320px] rounded-md bg-gray-100 '>
-                <WebCamComponent
-                    setImageFile={setSelectedFile}
-                    setImageSrc={setCapturedImage2}
-                    imageSrc={capturedImage2}
-                    ref={webCamRef}
-                    backgroundStyle="bg-gray-100"
-                />
-            </div>
-            <div className='relative flex-grow basis-[320px] rounded-md border border-gray-300'>
-                <WebCamComponent
-                    setImageFile={setImageFile}
-                    setImageSrc={setCapturedImage}
-                    imageSrc={capturedImage}
-                    ref={webCamRef}
-                />
-            </div>
+        <div className=' w-fit mx-auto '>
+            <WebCamComponent
+                setImageFile={setSelectedFile}
+                setImageSrc={setCapturedImage2}
+                imageSrc={capturedImage2}
+                ref={webCamRef}
+            />
         </div>
         <div className='flex justify-end'>
             <button className='py-3 mt-5 text-white bg-[#4327B2] border-[#4327B2] border-[1px] px-5 rounded-md cursor-pointer' onClick={compareImages}>
