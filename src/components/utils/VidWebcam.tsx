@@ -20,6 +20,7 @@ const VidWebCam = (
       setOpenDialog,
       title,
       setResult,
+      onSuccess,
     }: VidWebCamProps
   ) => {
     const [displayCamera, setDisplayCamera] = useState(false);
@@ -54,6 +55,7 @@ const VidWebCam = (
           // setResponse(prev => prev + `Final Results: ${JSON.stringify(message.results)}\n`);
           setInstructions('Liveness detection completed!');
           setResult(message.results);
+          onSuccess(message.results);
           socketRef.current?.close();
           setOpenDialog(true);
           setMessage('Liveness detection completed!');

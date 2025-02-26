@@ -6,8 +6,12 @@ export default {
     title: "ReactComponentLibrary/livenessCheck",
     component: LivenessCheck,
   } as Meta<typeof LivenessCheck>;
+
+  const handleSuccess = (result:any) => {
+    console.log("story result for liveness", result)
+  }
   
-  const Template: StoryFn<typeof LivenessCheck> = () => <LivenessCheck />;
+  const Template: StoryFn<typeof LivenessCheck> = () => <LivenessCheck onSuccess={handleSuccess} />;
   
   export const LivenessTest = Template.bind({});
   // LivenessTest.args = {

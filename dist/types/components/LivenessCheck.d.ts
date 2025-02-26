@@ -1,2 +1,3 @@
 import "../global.css";
-export declare const LivenessCheck: () => import("react/jsx-runtime").JSX.Element;
+import { LivenessCheckProps } from '../types/TaniAuthTypes';
+export declare const LivenessCheck: React.FC<LivenessCheckProps>;

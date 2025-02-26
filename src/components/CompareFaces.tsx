@@ -65,7 +65,6 @@ export const CompareFaces:React.FC<FaceCompareProps> = ({authInstance, onSuccess
     
 
     const close_camera = useCallback(() => {
-        setCapturedImage(null);
         setCapturedImage2(null);
         setFacesSimilarity(null);
         setIsLoading(false);
@@ -98,20 +97,7 @@ export const CompareFaces:React.FC<FaceCompareProps> = ({authInstance, onSuccess
 
   return (
     <div className='mt-3 w-full rounded-md bg-white p-4 relative'>
-        <h1 className='font-bold text-4xl'>Compare Faces </h1>
-        <ul className='mt-3 list-inside list-disc text-gray-500 mb-10'>
-            <li>
-            {' '}
-            Kindly click on the <strong>Compare Faces</strong> button to open the
-            camera module.
-            </li>
-            <li> Please make sure you allow the browser to access your camera.</li>
-            <li>
-            {' '}
-            Select a picture for your gallery as the control image, and take a
-            real time photo of yourself to compare both images
-            </li>
-        </ul>
+        <h1 className='font-bold text-4xl text-center'>Compare Faces </h1>
         <div className=' w-fit mx-auto '>
             <WebCamComponent
                 setImageFile={setSelectedFile}
