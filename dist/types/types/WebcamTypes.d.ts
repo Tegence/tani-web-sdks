@@ -1,3 +1,4 @@
+import { LivenessCheckResult } from "./TaniAuthTypes";
 export type WebCamProps = {
     setImageFile: (value: File | null) => void;
     imageSrc: string | null;
@@ -10,6 +11,7 @@ export type VidWebCamProps = {
     setError?: (value: string | null) => void;
     setOpenDialog: (value: boolean) => void;
     setResult: (value: LivenessDetection | null) => void;
+    onSuccess: (apiResponse: LivenessCheckResult) => void;
 };
 export type LivenessDetection = {
     blink_detected: boolean;

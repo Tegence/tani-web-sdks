@@ -28,8 +28,8 @@
       ]
     ]
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Tegence",
+  "license": "MIT",
   "devDependencies": {
     "@babel/preset-env": "^7.26.8",
     "@babel/preset-react": "^7.26.3",

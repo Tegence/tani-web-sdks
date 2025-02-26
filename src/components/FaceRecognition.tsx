@@ -3,7 +3,7 @@ import WebCamComponent, { WebcamRef }  from './utils/Webcam';
 import Dialog from './utils/Dialog';
 import "../global.css"
 import axios from './api/useAxios'
-import { ProbableUser } from '../types/ProbableUser';
+import { FaceRecognitionResult } from '../types/FaceRecognitionResult';
 import { AxiosError } from "axios";
 import { TaniAuthTypes } from '../types/TaniAuthTypes';
 
@@ -12,8 +12,7 @@ export const FaceRecognition:React.FC<TaniAuthTypes> = ({authInstance, onSuccess
     const [imageFile, setImageFile] = useState<File | null>(null)
     const webCamRef = useRef<WebcamRef | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [probableUser, setProbableUser] = useState<ProbableUser>();
-    const [similarityScore, setSimilarityScore] = useState<number>(0.0);
+    const [verifyFaceResult, setVerifyFaceResult] = useState<FaceRecognitionResult>()
     const [error, setError] = useState<string | null>(null)
     const [openDialog, setOpenDialog] = useState<boolean>(false)
 
@@ -36,8 +35,7 @@ export const FaceRecognition:React.FC<TaniAuthTypes> = ({authInstance, onSuccess
           });
           setIsLoading(false);
           // console.log(response);
-          setProbableUser(response.data.potential_match);
-          setSimilarityScore(response.data.similarity_score);
+          setVerifyFaceResult(response.data)
           onSuccess(response.data)
           setOpenDialog(true);
               
@@ -67,7 +65,7 @@ export const FaceRecognition:React.FC<TaniAuthTypes> = ({authInstance, onSuccess
 
     const close_camera = useCallback(() => {
       setImageSrc(null);
-      setProbableUser(undefined);
+      setVerifyFaceResult(undefined);
       setIsLoading(false);
       setError(null);
       webCamRef.current?.close_camera();
@@ -75,20 +73,7 @@ export const FaceRecognition:React.FC<TaniAuthTypes> = ({authInstance, onSuccess
 
   return (
     <main className='flex w-full flex-col bg-gray-100 p-8 relative'>
-      <h1 className='font-bold text-4xl'>Face Search</h1>
-      <ul className='mt-3 list-inside list-disc text-gray-500'>
-        <li>
-          {' '}
-          Click on the <strong>Capture Face</strong> button to open the camera
-          module.
-        </li>
-        <li> Please make sure you allow the browser to access your camera.</li>
-        <li>
-          {' '}
-          Take a picture of your face and click the <strong>Verify</strong>{' '}
-          button to find a user that matches your face.
-        </li>
-      </ul>
+      <h1 className='font-bold text-4xl text-center'>Face Search</h1>
       <div className='w-fit mx-auto mt-6'>
         <WebCamComponent
           setImageFile={setImageFile}
@@ -126,15 +111,16 @@ export const FaceRecognition:React.FC<TaniAuthTypes> = ({authInstance, onSuccess
                 <h4 className='mt-3 text-xl font-bold'>Verifying Image</h4>
               </div>
             )}
-            {probableUser && (
+            {verifyFaceResult && (
               <div className='mt-5 text-center'>
                 <h4 className='mb-2'>We have your result!</h4>
-                <p>
+                <p>{verifyFaceResult.message}</p>
+                {verifyFaceResult.potential_match && <p>
                   Based on our records, there's a
-                  <strong> {(similarityScore * 100).toFixed(2)}% </strong>{' '}
+                  <strong> {(verifyFaceResult.similarity_score).toFixed(2)}% </strong>{' '}
                   probability that you're
-                  <strong> {probableUser._source.person_name}</strong>
-                </p>
+                  <strong> {verifyFaceResult.potential_match}</strong>
+                </p>}
               </div>
             )}
             {error !== null &&(

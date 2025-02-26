@@ -3,28 +3,16 @@ import VidWebCam from './utils/VidWebcam'
 import { LivenessDetection } from '../types/WebcamTypes';
 import Dialog from './utils/Dialog';
 import "../global.css"
+import { LivenessCheckProps } from '../types/TaniAuthTypes';
 
-export  const LivenessCheck = () => {
+export  const LivenessCheck:React.FC<LivenessCheckProps> = ({onSuccess}) => {
     const [message, setMessage] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [result, setResult] = useState<LivenessDetection | null>(null);
     const [openDialog, setOpenDialog] = useState(false);
   return (
-    <main className='flex w-full flex-col relative'>
+    <main className='flex w-full flex-col p-8 relative'>
       <h1>Liveness Check</h1>
-      <ul className='mt-3 list-inside list-disc text-gray-500'>
-        <li>
-          {' '}
-          Click on the <strong>Record Face</strong> button to open the camera
-          module.
-        </li>
-        <li> Please make sure you allow the browser to access your camera.</li>
-        <li>
-          {' '}
-          Record a video of your face and click the <strong>Record</strong>{' '}
-          button to check your liveness.
-        </li>
-      </ul>
       <div className='flex-1'>
         <VidWebCam
             title='Start liveness check'
@@ -32,6 +20,7 @@ export  const LivenessCheck = () => {
             setError={setError}
             setOpenDialog={setOpenDialog}
             setResult={setResult}
+            onSuccess={onSuccess}
         />
       </div>
       { openDialog && <Dialog closeDialog={() => {setOpenDialog(false);}}>
@@ -42,7 +31,11 @@ export  const LivenessCheck = () => {
                 <div>
                   <div>
                     <span>
-                      <input type='radio' checked={result?.blink_detected} />
+                      <input 
+                        type='radio' 
+                        checked={result?.blink_detected} 
+                        readOnly
+                      />
                     </span>{' '}
                     <span>Eyes Blink</span>
                   </div>
@@ -51,6 +44,7 @@ export  const LivenessCheck = () => {
                       <input
                         type='radio'
                         checked={result?.mouth_open_detected}
+                        readOnly
                       />
                     </span>{' '}
                     <span>Mouth Open</span>
@@ -60,13 +54,14 @@ export  const LivenessCheck = () => {
                       <input
                         type='radio'
                         checked={result?.head_movement_detected}
+                        readOnly
                       />
                     </span>{' '}
                     <span>Head Movement</span>
                   </div>
                   <div>
                     <span>
-                      <input type='radio' checked={result?.is_live} />
+                      <input type='radio' checked={result?.is_live} readOnly/>
                     </span>{' '}
                     <span>Live</span>
                   </div>

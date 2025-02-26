@@ -34,7 +34,7 @@ export const EnrollUser:React.FC<TaniAuthTypes> = ({authInstance, onSuccess}) =>
           formData.append('image', file);
           // console.log("form data",formData)
         
-          await axios.post('/persons/create-with-image', 
+          const response = await axios.post('/persons/create-with-image', 
             formData
           , {
             headers: authInstance.getHeaders(),
@@ -42,8 +42,8 @@ export const EnrollUser:React.FC<TaniAuthTypes> = ({authInstance, onSuccess}) =>
           setIsLoading(false);
           setUploadCompleted(true);
           setOpenDialog(true)
-          onSuccess("person added successfully")
-          // console.log(response);
+          onSuccess(response.data)
+          // console.log(response.data);
         }
       } catch (error) {
         console.error(error);
@@ -76,9 +76,6 @@ export const EnrollUser:React.FC<TaniAuthTypes> = ({authInstance, onSuccess}) =>
     <div className='mx-auto mt-10 w-fit rounded-md bg-white p-5 relative'>
         <div className='mb-3 border-b border-gray-300 py-3 text-gray-700'>
           <h4 className='font-bold'>Create a new user</h4>
-          <p className='text-sm'>
-            Users created would be validated during authentication.
-          </p>
         </div>
         <div className='my-4 flex  flex-col gap-2'>
           <label className='text-sm font-semibold' htmlFor='Name'>

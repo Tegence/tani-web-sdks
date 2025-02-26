@@ -4778,7 +4778,7 @@ function FaTimes (props) {
 }
 
 const Dialog = ({ children, closeDialog }) => {
-    return (jsx("div", { className: 'absolute inset-0 backdrop-blur-2xl flex justify-center items-center', children: jsxs("div", { className: 'backdrop-blur-sm p-6 shadow flex flex-col', children: [jsx(FaTimes, { onClick: closeDialog, className: ' text-black text-xl mb-4 self-end cursor-pointer' }), jsx("div", { className: 'bg-white shadow-md p-4 rounded-md w-fit h-fit', children: children })] }) }));
+    return (jsx("div", { className: 'absolute inset-0 backdrop-blur-2xl flex justify-center items-center', children: jsxs("div", { className: 'backdrop-blur-sm p-6 shadow flex flex-col', children: [jsx(FaTimes, { onClick: closeDialog, className: ' text-black text-xl mb-4 self-end cursor-pointer' }), jsx("div", { className: 'bg-white shadow-md p-4 rounded-md mx-auto w-fit lg:w-1/2 h-fit', children: children })] }) }));
 };
 
 function bind(fn, thisArg) {
@@ -10513,14 +10513,14 @@ const EnrollUser = ({ authInstance, onSuccess }) => {
                 }
                 formData.append('image', file);
                 // console.log("form data",formData)
-                await axios.post('/persons/create-with-image', formData, {
+                const response = await axios.post('/persons/create-with-image', formData, {
                     headers: authInstance.getHeaders(),
                 });
                 setIsLoading(false);
                 setUploadCompleted(true);
                 setOpenDialog(true);
-                onSuccess("person added successfully");
-                // console.log(response);
+                onSuccess(response.data);
+                // console.log(response.data);
             }
         }
         catch (error) {
@@ -10542,7 +10542,7 @@ const EnrollUser = ({ authInstance, onSuccess }) => {
             inputRef.current.focus();
         }
     }, []);
-    return (jsxs("div", { className: 'mx-auto mt-10 w-fit rounded-md bg-white p-5 relative', children: [jsxs("div", { className: 'mb-3 border-b border-gray-300 py-3 text-gray-700', children: [jsx("h4", { className: 'font-bold', children: "Create a new user" }), jsx("p", { className: 'text-sm', children: "Users created would be validated during authentication." })] }), jsxs("div", { className: 'my-4 flex  flex-col gap-2', children: [jsx("label", { className: 'text-sm font-semibold', htmlFor: 'Name', children: "Name" }), jsx("input", { type: 'text', placeholder: "Enter Your Customer's Name", className: 'rounded border p-2', ref: inputRef, value: inputName, onChange: (e) => setInputName(e.target.value) })] }), jsx(WebCamComponent, { setImageFile: setImageFile, setImageSrc: setImageSrc, imageSrc: imageSrc, ref: webCamRef }), imageSrc && (jsx("div", { className: 'flex justify-end', children: jsx("button", { className: 'mt-5 py-3 text-white bg-[#4327B2] border-[#4327B2] border-[1px] px-5 rounded-md cursor-pointer', onClick: create_person_with_image, children: "Upload Photo" }) })), openDialog && jsxs(Dialog, { closeDialog: () => { setOpenDialog(false); close_camera(); }, children: [jsx("div", { className: 'flex justify-center', children: imageSrc && (jsx("div", { className: 'relative h-fit w-2/3 rounded-md bg-white shadow-md mb-3', children: jsx("img", { src: imageSrc, alt: 'Selected Image', style: { objectFit: 'scale-down' }, className: 'rounded-md' }) })) }), isLoading && (jsxs("div", { className: 'flex flex-col items-center justify-center', children: [jsx("div", { className: 'border-t-[#4327B2] h-16 w-16 animate-spin rounded-full border-4 border-t-4 border-gray-200' }), jsx("h4", { className: 'mt-3 text-xl font-bold', children: "Uploading Image" })] })), uploadCompleted && !isLoading && (jsx("div", { className: 'flex flex-col items-center justify-center', children: jsx("h4", { className: 'mt-3 text-xl font-bold', children: "Person added successfully" }) })), uploadError && !isLoading && (jsx("div", { className: 'flex flex-col items-center justify-center', children: jsx("h4", { className: 'mt-3 text-xl font-bold', children: "Unable To Add Person" }) }))] })] }));
+    return (jsxs("div", { className: 'mx-auto mt-10 w-fit rounded-md bg-white p-5 relative', children: [jsx("div", { className: 'mb-3 border-b border-gray-300 py-3 text-gray-700', children: jsx("h4", { className: 'font-bold', children: "Create a new user" }) }), jsxs("div", { className: 'my-4 flex  flex-col gap-2', children: [jsx("label", { className: 'text-sm font-semibold', htmlFor: 'Name', children: "Name" }), jsx("input", { type: 'text', placeholder: "Enter Your Customer's Name", className: 'rounded border p-2', ref: inputRef, value: inputName, onChange: (e) => setInputName(e.target.value) })] }), jsx(WebCamComponent, { setImageFile: setImageFile, setImageSrc: setImageSrc, imageSrc: imageSrc, ref: webCamRef }), imageSrc && (jsx("div", { className: 'flex justify-end', children: jsx("button", { className: 'mt-5 py-3 text-white bg-[#4327B2] border-[#4327B2] border-[1px] px-5 rounded-md cursor-pointer', onClick: create_person_with_image, children: "Upload Photo" }) })), openDialog && jsxs(Dialog, { closeDialog: () => { setOpenDialog(false); close_camera(); }, children: [jsx("div", { className: 'flex justify-center', children: imageSrc && (jsx("div", { className: 'relative h-fit w-2/3 rounded-md bg-white shadow-md mb-3', children: jsx("img", { src: imageSrc, alt: 'Selected Image', style: { objectFit: 'scale-down' }, className: 'rounded-md' }) })) }), isLoading && (jsxs("div", { className: 'flex flex-col items-center justify-center', children: [jsx("div", { className: 'border-t-[#4327B2] h-16 w-16 animate-spin rounded-full border-4 border-t-4 border-gray-200' }), jsx("h4", { className: 'mt-3 text-xl font-bold', children: "Uploading Image" })] })), uploadCompleted && !isLoading && (jsx("div", { className: 'flex flex-col items-center justify-center', children: jsx("h4", { className: 'mt-3 text-xl font-bold', children: "Person added successfully" }) })), uploadError && !isLoading && (jsx("div", { className: 'flex flex-col items-center justify-center', children: jsx("h4", { className: 'mt-3 text-xl font-bold', children: "Unable To Add Person" }) }))] })] }));
 };
 
 const FaceRecognition = ({ authInstance, onSuccess }) => {
@@ -10550,8 +10550,7 @@ const FaceRecognition = ({ authInstance, onSuccess }) => {
     const [imageFile, setImageFile] = useState(null);
     const webCamRef = useRef(null);
     const [isLoading, setIsLoading] = useState(false);
-    const [probableUser, setProbableUser] = useState();
-    const [similarityScore, setSimilarityScore] = useState(0.0);
+    const [verifyFaceResult, setVerifyFaceResult] = useState();
     const [error, setError] = useState(null);
     const [openDialog, setOpenDialog] = useState(false);
     const identify_user_face = async () => {
@@ -10569,8 +10568,7 @@ const FaceRecognition = ({ authInstance, onSuccess }) => {
                 });
                 setIsLoading(false);
                 // console.log(response);
-                setProbableUser(response.data.potential_match);
-                setSimilarityScore(response.data.similarity_score);
+                setVerifyFaceResult(response.data);
                 onSuccess(response.data);
                 setOpenDialog(true);
             }
@@ -10598,12 +10596,12 @@ const FaceRecognition = ({ authInstance, onSuccess }) => {
     };
     const close_camera = useCallback(() => {
         setImageSrc(null);
-        setProbableUser(undefined);
+        setVerifyFaceResult(undefined);
         setIsLoading(false);
         setError(null);
         webCamRef.current?.close_camera();
     }, []);
-    return (jsxs("main", { className: 'flex w-full flex-col bg-gray-100 p-8 relative', children: [jsx("h1", { className: 'font-bold text-4xl', children: "Face Search" }), jsxs("ul", { className: 'mt-3 list-inside list-disc text-gray-500', children: [jsxs("li", { children: [' ', "Click on the ", jsx("strong", { children: "Capture Face" }), " button to open the camera module."] }), jsx("li", { children: " Please make sure you allow the browser to access your camera." }), jsxs("li", { children: [' ', "Take a picture of your face and click the ", jsx("strong", { children: "Verify" }), ' ', "button to find a user that matches your face."] })] }), jsx("div", { className: 'w-fit mx-auto mt-6', children: jsx(WebCamComponent, { setImageFile: setImageFile, setImageSrc: setImageSrc, imageSrc: imageSrc, ref: webCamRef }) }), imageSrc && (jsx("div", { className: 'flex justify-end', children: jsx("button", { className: 'mt-5 py-3 text-white bg-[#4327B2] border-[#4327B2] border-[1px] px-5 rounded-md cursor-pointer', onClick: identify_user_face, children: "Verify Photo" }) })), openDialog && jsxs(Dialog, { closeDialog: () => { setOpenDialog(false); close_camera(); }, children: [jsx("div", { className: 'flex justify-center', children: imageSrc && (jsx("div", { className: 'relative h-fit w-2/3 rounded-md bg-white shadow-md mb-3', children: jsx("img", { src: imageSrc, alt: 'Selected Image', style: { objectFit: 'scale-down' }, className: 'rounded-md mx-auto' }) })) }), isLoading && (jsxs("div", { className: 'flex flex-col items-center justify-center', children: [jsx("div", { className: 'border-t-[#4327B2] h-16 w-16 animate-spin rounded-full border-4 border-t-4 border-gray-200' }), jsx("h4", { className: 'mt-3 text-xl font-bold', children: "Verifying Image" })] })), probableUser && (jsxs("div", { className: 'mt-5 text-center', children: [jsx("h4", { className: 'mb-2', children: "We have your result!" }), jsxs("p", { children: ["Based on our records, there's a", jsxs("strong", { children: [" ", (similarityScore * 100).toFixed(2), "% "] }), ' ', "probability that you're", jsxs("strong", { children: [" ", probableUser._source.person_name] })] })] })), error !== null && (jsx("div", { className: 'flex flex-col items-center justify-center', children: jsx("h4", { className: 'mt-3 text-xl font-bold w-1/2', children: error }) }))] })] }));
+    return (jsxs("main", { className: 'flex w-full flex-col bg-gray-100 p-8 relative', children: [jsx("h1", { className: 'font-bold text-4xl text-center', children: "Face Search" }), jsx("div", { className: 'w-fit mx-auto mt-6', children: jsx(WebCamComponent, { setImageFile: setImageFile, setImageSrc: setImageSrc, imageSrc: imageSrc, ref: webCamRef }) }), imageSrc && (jsx("div", { className: 'flex justify-end', children: jsx("button", { className: 'mt-5 py-3 text-white bg-[#4327B2] border-[#4327B2] border-[1px] px-5 rounded-md cursor-pointer', onClick: identify_user_face, children: "Verify Photo" }) })), openDialog && jsxs(Dialog, { closeDialog: () => { setOpenDialog(false); close_camera(); }, children: [jsx("div", { className: 'flex justify-center', children: imageSrc && (jsx("div", { className: 'relative h-fit w-2/3 rounded-md bg-white shadow-md mb-3', children: jsx("img", { src: imageSrc, alt: 'Selected Image', style: { objectFit: 'scale-down' }, className: 'rounded-md mx-auto' }) })) }), isLoading && (jsxs("div", { className: 'flex flex-col items-center justify-center', children: [jsx("div", { className: 'border-t-[#4327B2] h-16 w-16 animate-spin rounded-full border-4 border-t-4 border-gray-200' }), jsx("h4", { className: 'mt-3 text-xl font-bold', children: "Verifying Image" })] })), verifyFaceResult && (jsxs("div", { className: 'mt-5 text-center', children: [jsx("h4", { className: 'mb-2', children: "We have your result!" }), jsx("p", { children: verifyFaceResult.message }), verifyFaceResult.potential_match && jsxs("p", { children: ["Based on our records, there's a", jsxs("strong", { children: [" ", (verifyFaceResult.similarity_score).toFixed(2), "% "] }), ' ', "probability that you're", jsxs("strong", { children: [" ", verifyFaceResult.potential_match] })] })] })), error !== null && (jsx("div", { className: 'flex flex-col items-center justify-center', children: jsx("h4", { className: 'mt-3 text-xl font-bold w-1/2', children: error }) }))] })] }));
 };
 
 const CompareFaces = ({ authInstance, onSuccess, imageUrl }) => {
@@ -10654,7 +10652,6 @@ const CompareFaces = ({ authInstance, onSuccess, imageUrl }) => {
         }
     };
     const close_camera = useCallback(() => {
-        setCapturedImage(null);
         setCapturedImage2(null);
         setFacesSimilarity(null);
         setIsLoading(false);
@@ -10681,7 +10678,7 @@ const CompareFaces = ({ authInstance, onSuccess, imageUrl }) => {
         };
         processImage();
     }, [imageUrl]);
-    return (jsxs("div", { className: 'mt-3 w-full rounded-md bg-white p-4 relative', children: [jsx("h1", { className: 'font-bold text-4xl', children: "Compare Faces " }), jsxs("ul", { className: 'mt-3 list-inside list-disc text-gray-500 mb-10', children: [jsxs("li", { children: [' ', "Kindly click on the ", jsx("strong", { children: "Compare Faces" }), " button to open the camera module."] }), jsx("li", { children: " Please make sure you allow the browser to access your camera." }), jsxs("li", { children: [' ', "Select a picture for your gallery as the control image, and take a real time photo of yourself to compare both images"] })] }), jsx("div", { className: ' w-fit mx-auto ', children: jsx(WebCamComponent, { setImageFile: setSelectedFile, setImageSrc: setCapturedImage2, imageSrc: capturedImage2, ref: webCamRef }) }), jsx("div", { className: 'flex justify-end', children: jsx("button", { className: 'py-3 mt-5 text-white bg-[#4327B2] border-[#4327B2] border-[1px] px-5 rounded-md cursor-pointer', onClick: compareImages, children: "Compare Faces" }) }), openDialog && jsx(Dialog, { closeDialog: () => { setOpenDialog(false); close_camera(); }, children: jsxs("div", { className: 'flex flex-col justify-center', children: [jsx("div", { className: 'flex space-x-3', children: comparedImages?.map((image, index) => (jsx("div", { className: 'relative h-fit w-1/2 rounded-md bg-white shadow-md mb-3', children: jsx("img", { src: image, alt: 'Selected Image', style: { objectFit: 'scale-down' }, className: 'selected-image rounded-md mx-auto' }) }, index))) }), isLoading && (jsxs("div", { className: 'flex flex-col items-center justify-center', children: [jsx("div", { className: 'border-t-[#4327B2] h-16 w-16 animate-spin rounded-full border-4 border-t-4 border-gray-200' }), jsx("h4", { className: 'mt-3 text-xl font-bold', children: "Comparing Images" })] })), error !== null && (jsx("div", { className: 'text-center flex justify-center items-center', children: jsx("h5", { className: 'w-1/2', children: error }) })), facesSimilarity && (jsxs("div", { className: 'mt-5 text-center', children: [jsx("p", { className: 'text-lg font-semibold text-gray-600', children: "Confidence Percentage" }), jsxs("h2", { className: 'font-bold', children: [(facesSimilarity.similarity_score * 100).toFixed(2), "%"] }), jsx("p", { className: 'text-gray-500', children: facesSimilarity.message })] }))] }) })] }));
+    return (jsxs("div", { className: 'mt-3 w-full rounded-md bg-white p-4 relative', children: [jsx("h1", { className: 'font-bold text-4xl text-center', children: "Compare Faces " }), jsx("div", { className: ' w-fit mx-auto ', children: jsx(WebCamComponent, { setImageFile: setSelectedFile, setImageSrc: setCapturedImage2, imageSrc: capturedImage2, ref: webCamRef }) }), jsx("div", { className: 'flex justify-end', children: jsx("button", { className: 'py-3 mt-5 text-white bg-[#4327B2] border-[#4327B2] border-[1px] px-5 rounded-md cursor-pointer', onClick: compareImages, children: "Compare Faces" }) }), openDialog && jsx(Dialog, { closeDialog: () => { setOpenDialog(false); close_camera(); }, children: jsxs("div", { className: 'flex flex-col justify-center', children: [jsx("div", { className: 'flex space-x-3', children: comparedImages?.map((image, index) => (jsx("div", { className: 'relative h-fit w-1/2 rounded-md bg-white shadow-md mb-3', children: jsx("img", { src: image, alt: 'Selected Image', style: { objectFit: 'scale-down' }, className: 'selected-image rounded-md mx-auto' }) }, index))) }), isLoading && (jsxs("div", { className: 'flex flex-col items-center justify-center', children: [jsx("div", { className: 'border-t-[#4327B2] h-16 w-16 animate-spin rounded-full border-4 border-t-4 border-gray-200' }), jsx("h4", { className: 'mt-3 text-xl font-bold', children: "Comparing Images" })] })), error !== null && (jsx("div", { className: 'text-center flex justify-center items-center', children: jsx("h5", { className: 'w-1/2', children: error }) })), facesSimilarity && (jsxs("div", { className: 'mt-5 text-center', children: [jsx("p", { className: 'text-lg font-semibold text-gray-600', children: "Confidence Percentage" }), jsxs("h2", { className: 'font-bold', children: [(facesSimilarity.similarity_score * 100).toFixed(2), "%"] }), jsx("p", { className: 'text-gray-500', children: facesSimilarity.message })] }))] }) })] }));
 };
 
 /*! *****************************************************************************
@@ -10880,7 +10877,7 @@ function GoVideo (props) {
   return GenIcon({"attr":{"viewBox":"0 0 24 24"},"child":[{"tag":"path","attr":{"d":"M0 4.75C0 3.784.784 3 1.75 3h20.5c.966 0 1.75.784 1.75 1.75v14.5A1.75 1.75 0 0 1 22.25 21H1.75A1.75 1.75 0 0 1 0 19.25Zm1.75-.25a.25.25 0 0 0-.25.25v14.5c0 .138.112.25.25.25h20.5a.25.25 0 0 0 .25-.25V4.75a.25.25 0 0 0-.25-.25Z"},"child":[]},{"tag":"path","attr":{"d":"M9 15.584V8.416a.5.5 0 0 1 .77-.42l5.576 3.583a.5.5 0 0 1 0 .842L9.77 16.005a.5.5 0 0 1-.77-.42Z"},"child":[]}]})(props);
 }
 
-const VidWebCam = (({ setMessage, setError, setOpenDialog, title, setResult, }) => {
+const VidWebCam = (({ setMessage, setError, setOpenDialog, title, setResult, onSuccess, }) => {
     const [displayCamera, setDisplayCamera] = useState(false);
     const videoRef = useRef(null);
     const socketRef = useRef(null);
@@ -10904,6 +10901,7 @@ const VidWebCam = (({ setMessage, setError, setOpenDialog, title, setResult, }) 
                 // setResponse(prev => prev + `Final Results: ${JSON.stringify(message.results)}\n`);
                 setInstructions('Liveness detection completed!');
                 setResult(message.results);
+                onSuccess(message.results);
                 socketRef.current?.close();
                 setOpenDialog(true);
                 setMessage('Liveness detection completed!');
@@ -10996,12 +10994,12 @@ const VidWebCam = (({ setMessage, setError, setOpenDialog, title, setResult, }) 
                                 }, className: 'flex-grow basis-10 md:basis-10 hover:bg-[#B9AEE7] text-[#4327B2] border-[#4327B2] border-[1px] px-4 py-2 rounded-md cursor-pointer', children: "Open Camera" }) })] })) })] }));
 });
 
-const LivenessCheck = () => {
+const LivenessCheck = ({ onSuccess }) => {
     const [message, setMessage] = useState(null);
     const [error, setError] = useState(null);
     const [result, setResult] = useState(null);
     const [openDialog, setOpenDialog] = useState(false);
-    return (jsxs("main", { className: 'flex w-full flex-col relative', children: [jsx("h1", { children: "Liveness Check" }), jsxs("ul", { className: 'mt-3 list-inside list-disc text-gray-500', children: [jsxs("li", { children: [' ', "Click on the ", jsx("strong", { children: "Record Face" }), " button to open the camera module."] }), jsx("li", { children: " Please make sure you allow the browser to access your camera." }), jsxs("li", { children: [' ', "Record a video of your face and click the ", jsx("strong", { children: "Record" }), ' ', "button to check your liveness."] })] }), jsx("div", { className: 'flex-1', children: jsx(VidWebCam, { title: 'Start liveness check', setMessage: setMessage, setError: setError, setOpenDialog: setOpenDialog, setResult: setResult }) }), openDialog && jsxs(Dialog, { closeDialog: () => { setOpenDialog(false); }, children: [jsx("div", { className: 'flex justify-center p-6', children: message && (jsxs("div", { className: 'relative flex h-52 w-full px-6 flex-col items-center justify-center rounded-md bg-white', children: [jsx("h5", { className: 'mb-2 text-center', children: message }), jsxs("div", { children: [jsxs("div", { children: [jsx("span", { children: jsx("input", { type: 'radio', checked: result?.blink_detected }) }), ' ', jsx("span", { children: "Eyes Blink" })] }), jsxs("div", { children: [jsx("span", { children: jsx("input", { type: 'radio', checked: result?.mouth_open_detected }) }), ' ', jsx("span", { children: "Mouth Open" })] }), jsxs("div", { children: [jsx("span", { children: jsx("input", { type: 'radio', checked: result?.head_movement_detected }) }), ' ', jsx("span", { children: "Head Movement" })] }), jsxs("div", { children: [jsx("span", { children: jsx("input", { type: 'radio', checked: result?.is_live }) }), ' ', jsx("span", { children: "Live" })] })] })] })) }), error !== null && (jsx("div", { className: 'text-center', children: jsx("h5", { className: '', children: error }) }))] })] }));
+    return (jsxs("main", { className: 'flex w-full flex-col p-8 relative', children: [jsx("h1", { children: "Liveness Check" }), jsx("div", { className: 'flex-1', children: jsx(VidWebCam, { title: 'Start liveness check', setMessage: setMessage, setError: setError, setOpenDialog: setOpenDialog, setResult: setResult, onSuccess: onSuccess }) }), openDialog && jsxs(Dialog, { closeDialog: () => { setOpenDialog(false); }, children: [jsx("div", { className: 'flex justify-center p-6', children: message && (jsxs("div", { className: 'relative flex h-52 w-full px-6 flex-col items-center justify-center rounded-md bg-white', children: [jsx("h5", { className: 'mb-2 text-center', children: message }), jsxs("div", { children: [jsxs("div", { children: [jsx("span", { children: jsx("input", { type: 'radio', checked: result?.blink_detected, readOnly: true }) }), ' ', jsx("span", { children: "Eyes Blink" })] }), jsxs("div", { children: [jsx("span", { children: jsx("input", { type: 'radio', checked: result?.mouth_open_detected, readOnly: true }) }), ' ', jsx("span", { children: "Mouth Open" })] }), jsxs("div", { children: [jsx("span", { children: jsx("input", { type: 'radio', checked: result?.head_movement_detected, readOnly: true }) }), ' ', jsx("span", { children: "Head Movement" })] }), jsxs("div", { children: [jsx("span", { children: jsx("input", { type: 'radio', checked: result?.is_live, readOnly: true }) }), ' ', jsx("span", { children: "Live" })] })] })] })) }), error !== null && (jsx("div", { className: 'text-center', children: jsx("h5", { className: '', children: error }) }))] })] }));
 };
 
 class TaniAuth {
