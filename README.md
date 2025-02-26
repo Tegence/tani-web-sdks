@@ -37,8 +37,25 @@ import { EnrollUser } from "@tegence/tani-web-sdks";
 />;
 ```
 
-✅ **Response:**  
-A unique identifier (`string`) for the enrolled face.
+✅ **Response:**
+
+```json
+{
+  "message": "Person created successfully",
+  "person_details": {
+      "person_id": "ca18a8c6-00eb-4b8d-string",
+      "client_id": "string",
+      "group_id": "d2ea1214-22fd-4512-9844-string",
+      "person_name": "john doe",
+      "person_email": "johndoe@email.com",
+  },
+  "image_details": {
+    "name": "john doe",
+    "image_url": "image url",
+    "person_id": "string",
+  }
+}
+```
 
 ---
 
@@ -58,12 +75,8 @@ import { FaceRecognition } from "@tegence/tani-web-sdks";
 ```json
 {
   "message": "We found a match for the uploaded image",
-  "potential_match": {
-    "person_id": "string",
-    "person_name": "string",
-    "client_id": "string"
-  },
-  "similarity_score": 0.7556397799150376
+  "similarity_score": 88.99883838838,
+  "potential_match": "John Doe",
 }
 ```
 
@@ -97,7 +110,19 @@ import { CompareFaces } from "@tegence/tani-web-sdks";
 ```tsx
 import { LivenessCheck } from "@tegence/tani-web-sdks";
 
-<LivenessCheck />;
+<LivenessCheck 
+  onSuccess={(data) => console.log("liveness checked", data)}
+/>;
+```
+✅ **Response Shape:**  
+
+```json
+{
+  "blink_detected": false,
+  "mouth_open_detected": false,
+  "head_movement_detected": false,
+  "is_live": false
+}
 ```
 
 ---
