@@ -3,7 +3,8 @@ import typescript from "@rollup/plugin-typescript";
 import commonjs from "@rollup/plugin-commonjs";
 import dts from "rollup-plugin-dts";
 import postcss from "rollup-plugin-postcss";
-import packageJson from "./package.json" with { type: "json" };
+import json from "@rollup/plugin-json"; 
+import polyfillNode from "rollup-plugin-polyfill-node";
 
 
 export default [
@@ -11,19 +12,24 @@ export default [
       input: "src/index.ts",
       output: [
         {
-          file: packageJson.main,
+          file: "dist/index.js",
           format: "cjs",
           sourcemap: true,
         },
         {
-          file: packageJson.module,
+          file: "dist/index.esm.js",
           format: "esm",
           sourcemap: true,
         },
       ],
       plugins: [
-        resolve(),
+        resolve({
+          browser: true, 
+          preferBuiltins: false
+        }),
         commonjs(),
+        polyfillNode(),
+        json(),
         typescript({
           tsconfig: "./tsconfig.json",
           exclude: ["**/*.test.tsx", "**/*.test.ts", "**/*.stories.ts"],
@@ -31,9 +37,9 @@ export default [
           declarationDir: 'dist/types', // Output directory for .d.ts files
           outDir: 'dist', // Output directory for compiled JS files
         }),
-        postcss({ extensions: [".css"], inject: true, extract: false }),
+        postcss({ extensions: [".css"], inject: true, extract: "styles.css", minimize: true }),
       ],
-      external: ["react", "react-dom", "react/jsx-runtime"],
+      external: ["react", "react-dom", "react/jsx-runtime", "fs", "path"],
     },
     {
       input: "dist/types/index.d.ts",
