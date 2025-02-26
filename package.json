@@ -1,6 +1,6 @@
 {
   "name": "@tegence/tani-web-sdks",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tani web SDKs",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
