@@ -13,7 +13,8 @@
     "dev": "rollup -c -w",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_5316cd8306022c8"
+    "chromatic": "npx chromatic --project-token=chpt_5316cd8306022c8",
+    "local-pack": "npm pack --pack-destination ./local-test"
   },
   "babel": {
     "sourceType": "unambiguous",
