@@ -95,7 +95,7 @@ const VidWebCam = (
           video.srcObject = stream;
           video.onloadedmetadata = () => {
             video.play();
-            console.log('Webcam stream loaded.');
+            // console.log('Webcam stream loaded.');
             sendFrame();
           };
         })
