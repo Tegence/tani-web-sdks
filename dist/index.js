@@ -1,7 +1,7 @@
 'use strict';
 
 var jsxRuntime = require('react/jsx-runtime');
-var React = require('react');
+var require$$0 = require('react');
 
 function getDefaultExportFromCjs (x) {
 	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
@@ -18,7 +18,7 @@ function requireReactWebcam () {
 	hasRequiredReactWebcam = 1;
 	(function (module, exports) {
 		(function webpackUniversalModuleDefinition(root, factory) {
-			module.exports = factory(React);
+			module.exports = factory(require$$0);
 		})(reactWebcam, function(__WEBPACK_EXTERNAL_MODULE_react__) {
 		return /******/ (function(modules) { // webpackBootstrap
 		/******/ 	// The module cache
@@ -463,74 +463,159 @@ function requireReactWebcam () {
 var reactWebcamExports = requireReactWebcam();
 var Webcam = /*@__PURE__*/getDefaultExportFromCjs(reactWebcamExports);
 
-var DefaultContext = {
-  color: undefined,
-  size: undefined,
-  className: undefined,
-  style: undefined,
-  attr: undefined
+/**
+ * @license lucide-react v0.477.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+
+const toKebabCase = (string) => string.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
+const mergeClasses = (...classes) => classes.filter((className, index, array) => {
+  return Boolean(className) && className.trim() !== "" && array.indexOf(className) === index;
+}).join(" ").trim();
+
+/**
+ * @license lucide-react v0.477.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+
+var defaultAttributes = {
+  xmlns: "http://www.w3.org/2000/svg",
+  width: 24,
+  height: 24,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 2,
+  strokeLinecap: "round",
+  strokeLinejoin: "round"
 };
-var IconContext = React.createContext && /*#__PURE__*/React.createContext(DefaultContext);
 
-var _excluded$1 = ["attr", "size", "title"];
-function _objectWithoutProperties$1(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose$1(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-function _objectWithoutPropertiesLoose$1(source, excluded) { if (source == null) return {}; var target = {}; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } } return target; }
-function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-function ownKeys$2(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread$2(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys$2(Object(t), true).forEach(function (r) { _defineProperty$2(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys$2(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty$2(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function Tree2Element(tree) {
-  return tree && tree.map((node, i) => /*#__PURE__*/React.createElement(node.tag, _objectSpread$2({
-    key: i
-  }, node.attr), Tree2Element(node.child)));
-}
-function GenIcon(data) {
-  return props => /*#__PURE__*/React.createElement(IconBase, _extends({
-    attr: _objectSpread$2({}, data.attr)
-  }, props), Tree2Element(data.child));
-}
-function IconBase(props) {
-  var elem = conf => {
-    var {
-        attr,
-        size,
-        title
-      } = props,
-      svgProps = _objectWithoutProperties$1(props, _excluded$1);
-    var computedSize = size || conf.size || "1em";
-    var className;
-    if (conf.className) className = conf.className;
-    if (props.className) className = (className ? className + " " : "") + props.className;
-    return /*#__PURE__*/React.createElement("svg", _extends({
-      stroke: "currentColor",
-      fill: "currentColor",
-      strokeWidth: "0"
-    }, conf.attr, attr, svgProps, {
-      className: className,
-      style: _objectSpread$2(_objectSpread$2({
-        color: props.color || conf.color
-      }, conf.style), props.style),
-      height: computedSize,
-      width: computedSize,
-      xmlns: "http://www.w3.org/2000/svg"
-    }), title && /*#__PURE__*/React.createElement("title", null, title), props.children);
-  };
-  return IconContext !== undefined ? /*#__PURE__*/React.createElement(IconContext.Consumer, null, conf => elem(conf)) : elem(DefaultContext);
-}
+/**
+ * @license lucide-react v0.477.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
 
-// THIS FILE IS AUTO GENERATED
-function AiOutlineCamera (props) {
-  return GenIcon({"attr":{"viewBox":"0 0 1024 1024"},"child":[{"tag":"path","attr":{"d":"M864 248H728l-32.4-90.8a32.07 32.07 0 0 0-30.2-21.2H358.6c-13.5 0-25.6 8.5-30.1 21.2L296 248H160c-44.2 0-80 35.8-80 80v456c0 44.2 35.8 80 80 80h704c44.2 0 80-35.8 80-80V328c0-44.2-35.8-80-80-80zm8 536c0 4.4-3.6 8-8 8H160c-4.4 0-8-3.6-8-8V328c0-4.4 3.6-8 8-8h186.7l17.1-47.8 22.9-64.2h250.5l22.9 64.2 17.1 47.8H864c4.4 0 8 3.6 8 8v456zM512 384c-88.4 0-160 71.6-160 160s71.6 160 160 160 160-71.6 160-160-71.6-160-160-160zm0 256c-53 0-96-43-96-96s43-96 96-96 96 43 96 96-43 96-96 96z"},"child":[]}]})(props);
-}
 
-// THIS FILE IS AUTO GENERATED
-function PiCamera (props) {
-  return GenIcon({"attr":{"viewBox":"0 0 256 256","fill":"currentColor"},"child":[{"tag":"path","attr":{"d":"M208,56H180.28L166.65,35.56A8,8,0,0,0,160,32H96a8,8,0,0,0-6.65,3.56L75.71,56H48A24,24,0,0,0,24,80V192a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V80A24,24,0,0,0,208,56Zm8,136a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8H80a8,8,0,0,0,6.66-3.56L100.28,48h55.43l13.63,20.44A8,8,0,0,0,176,72h32a8,8,0,0,1,8,8ZM128,88a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,88Zm0,72a28,28,0,1,1,28-28A28,28,0,0,1,128,160Z"},"child":[]}]})(props);
-}function PiCloudArrowUp (props) {
-  return GenIcon({"attr":{"viewBox":"0 0 256 256","fill":"currentColor"},"child":[{"tag":"path","attr":{"d":"M178.34,165.66,160,147.31V208a8,8,0,0,1-16,0V147.31l-18.34,18.35a8,8,0,0,1-11.32-11.32l32-32a8,8,0,0,1,11.32,0l32,32a8,8,0,0,1-11.32,11.32ZM160,40A88.08,88.08,0,0,0,81.29,88.68,64,64,0,1,0,72,216h40a8,8,0,0,0,0-16H72a48,48,0,0,1,0-96c1.1,0,2.2,0,3.29.12A88,88,0,0,0,72,128a8,8,0,0,0,16,0,72,72,0,1,1,100.8,66,8,8,0,0,0,3.2,15.34,7.9,7.9,0,0,0,3.2-.68A88,88,0,0,0,160,40Z"},"child":[]}]})(props);
-}
+const Icon = require$$0.forwardRef(
+  ({
+    color = "currentColor",
+    size = 24,
+    strokeWidth = 2,
+    absoluteStrokeWidth,
+    className = "",
+    children,
+    iconNode,
+    ...rest
+  }, ref) => {
+    return require$$0.createElement(
+      "svg",
+      {
+        ref,
+        ...defaultAttributes,
+        width: size,
+        height: size,
+        stroke: color,
+        strokeWidth: absoluteStrokeWidth ? Number(strokeWidth) * 24 / Number(size) : strokeWidth,
+        className: mergeClasses("lucide", className),
+        ...rest
+      },
+      [
+        ...iconNode.map(([tag, attrs]) => require$$0.createElement(tag, attrs)),
+        ...Array.isArray(children) ? children : [children]
+      ]
+    );
+  }
+);
+
+/**
+ * @license lucide-react v0.477.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+
+
+const createLucideIcon = (iconName, iconNode) => {
+  const Component = require$$0.forwardRef(
+    ({ className, ...props }, ref) => require$$0.createElement(Icon, {
+      ref,
+      iconNode,
+      className: mergeClasses(`lucide-${toKebabCase(iconName)}`, className),
+      ...props
+    })
+  );
+  Component.displayName = `${iconName}`;
+  return Component;
+};
+
+/**
+ * @license lucide-react v0.477.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+
+
+const __iconNode$3 = [
+  [
+    "path",
+    {
+      d: "M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z",
+      key: "1tc9qg"
+    }
+  ],
+  ["circle", { cx: "12", cy: "13", r: "3", key: "1vg3eu" }]
+];
+const Camera = createLucideIcon("Camera", __iconNode$3);
+
+/**
+ * @license lucide-react v0.477.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+
+
+const __iconNode$2 = [
+  ["path", { d: "M12 13v8", key: "1l5pq0" }],
+  ["path", { d: "M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242", key: "1pljnt" }],
+  ["path", { d: "m8 17 4-4 4 4", key: "1quai1" }]
+];
+const CloudUpload = createLucideIcon("CloudUpload", __iconNode$2);
+
+/**
+ * @license lucide-react v0.477.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+
+
+const __iconNode$1 = [
+  ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", key: "afitv7" }],
+  ["path", { d: "m9 8 6 4-6 4Z", key: "f1r3lt" }]
+];
+const SquarePlay = createLucideIcon("SquarePlay", __iconNode$1);
+
+/**
+ * @license lucide-react v0.477.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+
+
+const __iconNode = [
+  ["path", { d: "M18 6 6 18", key: "1bl5f8" }],
+  ["path", { d: "m6 6 12 12", key: "d8bk6v" }]
+];
+const X = createLucideIcon("X", __iconNode);
 
 /**
  * Browser Image Compression
@@ -3790,7 +3875,7 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
  * ```
  */
 
-var Dropzone = /*#__PURE__*/React.forwardRef(function (_ref, ref) {
+var Dropzone = /*#__PURE__*/require$$0.forwardRef(function (_ref, ref) {
   var children = _ref.children,
       params = _objectWithoutProperties(_ref, _excluded);
 
@@ -3798,13 +3883,13 @@ var Dropzone = /*#__PURE__*/React.forwardRef(function (_ref, ref) {
       open = _useDropzone.open,
       props = _objectWithoutProperties(_useDropzone, _excluded2);
 
-  React.useImperativeHandle(ref, function () {
+  require$$0.useImperativeHandle(ref, function () {
     return {
       open: open
     };
   }, [open]); // TODO: Figure out why react-styleguidist cannot create docs if we don't return a jsx element
 
-  return /*#__PURE__*/React.createElement(React.Fragment, null, children(_objectSpread(_objectSpread({}, props), {}, {
+  return /*#__PURE__*/require$$0.createElement(require$$0.Fragment, null, children(_objectSpread(_objectSpread({}, props), {}, {
     open: open
   })));
 });
@@ -4203,16 +4288,16 @@ function useDropzone() {
       onError = _defaultProps$props.onError,
       validator = _defaultProps$props.validator;
 
-  var acceptAttr = React.useMemo(function () {
+  var acceptAttr = require$$0.useMemo(function () {
     return acceptPropAsAcceptAttr(accept);
   }, [accept]);
-  var pickerTypes = React.useMemo(function () {
+  var pickerTypes = require$$0.useMemo(function () {
     return pickerOptionsFromAccept(accept);
   }, [accept]);
-  var onFileDialogOpenCb = React.useMemo(function () {
+  var onFileDialogOpenCb = require$$0.useMemo(function () {
     return typeof onFileDialogOpen === "function" ? onFileDialogOpen : noop$1;
   }, [onFileDialogOpen]);
-  var onFileDialogCancelCb = React.useMemo(function () {
+  var onFileDialogCancelCb = require$$0.useMemo(function () {
     return typeof onFileDialogCancel === "function" ? onFileDialogCancel : noop$1;
   }, [onFileDialogCancel]);
   /**
@@ -4220,17 +4305,17 @@ function useDropzone() {
    * @type {React.MutableRefObject<HTMLElement>}
    */
 
-  var rootRef = React.useRef(null);
-  var inputRef = React.useRef(null);
+  var rootRef = require$$0.useRef(null);
+  var inputRef = require$$0.useRef(null);
 
-  var _useReducer = React.useReducer(reducer, initialState),
+  var _useReducer = require$$0.useReducer(reducer, initialState),
       _useReducer2 = _slicedToArray(_useReducer, 2),
       state = _useReducer2[0],
       dispatch = _useReducer2[1];
 
   var isFocused = state.isFocused,
       isFileDialogActive = state.isFileDialogActive;
-  var fsAccessApiWorksRef = React.useRef(typeof window !== "undefined" && window.isSecureContext && useFsAccessApi && canUseFileSystemAccessAPI()); // Update file dialog active state when the window is focused on
+  var fsAccessApiWorksRef = require$$0.useRef(typeof window !== "undefined" && window.isSecureContext && useFsAccessApi && canUseFileSystemAccessAPI()); // Update file dialog active state when the window is focused on
 
   var onWindowFocus = function onWindowFocus() {
     // Execute the timeout only if the file dialog is opened in the browser
@@ -4250,13 +4335,13 @@ function useDropzone() {
     }
   };
 
-  React.useEffect(function () {
+  require$$0.useEffect(function () {
     window.addEventListener("focus", onWindowFocus, false);
     return function () {
       window.removeEventListener("focus", onWindowFocus, false);
     };
   }, [inputRef, isFileDialogActive, onFileDialogCancelCb, fsAccessApiWorksRef]);
-  var dragTargetsRef = React.useRef([]);
+  var dragTargetsRef = require$$0.useRef([]);
 
   var onDocumentDrop = function onDocumentDrop(event) {
     if (rootRef.current && rootRef.current.contains(event.target)) {
@@ -4268,7 +4353,7 @@ function useDropzone() {
     dragTargetsRef.current = [];
   };
 
-  React.useEffect(function () {
+  require$$0.useEffect(function () {
     if (preventDropOnDocument) {
       document.addEventListener("dragover", onDocumentDragOver, false);
       document.addEventListener("drop", onDocumentDrop, false);
@@ -4282,14 +4367,14 @@ function useDropzone() {
     };
   }, [rootRef, preventDropOnDocument]); // Auto focus the root when autoFocus is true
 
-  React.useEffect(function () {
+  require$$0.useEffect(function () {
     if (!disabled && autoFocus && rootRef.current) {
       rootRef.current.focus();
     }
 
     return function () {};
   }, [rootRef, autoFocus, disabled]);
-  var onErrCb = React.useCallback(function (e) {
+  var onErrCb = require$$0.useCallback(function (e) {
     if (onError) {
       onError(e);
     } else {
@@ -4297,7 +4382,7 @@ function useDropzone() {
       console.error(e);
     }
   }, [onError]);
-  var onDragEnterCb = React.useCallback(function (event) {
+  var onDragEnterCb = require$$0.useCallback(function (event) {
     event.preventDefault(); // Persist here because we need the event later after getFilesFromEvent() is done
 
     event.persist();
@@ -4336,7 +4421,7 @@ function useDropzone() {
       });
     }
   }, [getFilesFromEvent, onDragEnter, onErrCb, noDragEventsBubbling, acceptAttr, minSize, maxSize, multiple, maxFiles, validator]);
-  var onDragOverCb = React.useCallback(function (event) {
+  var onDragOverCb = require$$0.useCallback(function (event) {
     event.preventDefault();
     event.persist();
     stopPropagation(event);
@@ -4356,7 +4441,7 @@ function useDropzone() {
 
     return false;
   }, [onDragOver, noDragEventsBubbling]);
-  var onDragLeaveCb = React.useCallback(function (event) {
+  var onDragLeaveCb = require$$0.useCallback(function (event) {
     event.preventDefault();
     event.persist();
     stopPropagation(event); // Only deactivate once the dropzone and all children have been left
@@ -4389,7 +4474,7 @@ function useDropzone() {
       onDragLeave(event);
     }
   }, [rootRef, onDragLeave, noDragEventsBubbling]);
-  var setFiles = React.useCallback(function (files, event) {
+  var setFiles = require$$0.useCallback(function (files, event) {
     var acceptedFiles = [];
     var fileRejections = [];
     files.forEach(function (file) {
@@ -4453,7 +4538,7 @@ function useDropzone() {
       onDropAccepted(acceptedFiles, event);
     }
   }, [dispatch, multiple, acceptAttr, minSize, maxSize, maxFiles, onDrop, onDropAccepted, onDropRejected, validator]);
-  var onDropCb = React.useCallback(function (event) {
+  var onDropCb = require$$0.useCallback(function (event) {
     event.preventDefault(); // Persist here because we need the event later after getFilesFromEvent() is done
 
     event.persist();
@@ -4477,7 +4562,7 @@ function useDropzone() {
     });
   }, [getFilesFromEvent, setFiles, onErrCb, noDragEventsBubbling]); // Fn for opening the file dialog programmatically
 
-  var openFileDialog = React.useCallback(function () {
+  var openFileDialog = require$$0.useCallback(function () {
     // No point to use FS access APIs if context is not secure
     // https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts#feature_detection
     if (fsAccessApiWorksRef.current) {
@@ -4531,7 +4616,7 @@ function useDropzone() {
     }
   }, [dispatch, onFileDialogOpenCb, onFileDialogCancelCb, useFsAccessApi, setFiles, onErrCb, pickerTypes, multiple]); // Cb to open the file dialog when SPACE/ENTER occurs on the dropzone
 
-  var onKeyDownCb = React.useCallback(function (event) {
+  var onKeyDownCb = require$$0.useCallback(function (event) {
     // Ignore keyboard events bubbling up the DOM tree
     if (!rootRef.current || !rootRef.current.isEqualNode(event.target)) {
       return;
@@ -4543,18 +4628,18 @@ function useDropzone() {
     }
   }, [rootRef, openFileDialog]); // Update focus state for the dropzone
 
-  var onFocusCb = React.useCallback(function () {
+  var onFocusCb = require$$0.useCallback(function () {
     dispatch({
       type: "focus"
     });
   }, []);
-  var onBlurCb = React.useCallback(function () {
+  var onBlurCb = require$$0.useCallback(function () {
     dispatch({
       type: "blur"
     });
   }, []); // Cb to open the file dialog when click occurs on the dropzone
 
-  var onClickCb = React.useCallback(function () {
+  var onClickCb = require$$0.useCallback(function () {
     if (noClick) {
       return;
     } // In IE11/Edge the file-browser dialog is blocking, therefore, use setTimeout()
@@ -4587,7 +4672,7 @@ function useDropzone() {
     }
   };
 
-  var getRootProps = React.useMemo(function () {
+  var getRootProps = require$$0.useMemo(function () {
     return function () {
       var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
           _ref2$refKey = _ref2.refKey,
@@ -4618,10 +4703,10 @@ function useDropzone() {
       } : {}), rest);
     };
   }, [rootRef, onKeyDownCb, onFocusCb, onBlurCb, onClickCb, onDragEnterCb, onDragOverCb, onDragLeaveCb, onDropCb, noKeyboard, noDrag, disabled]);
-  var onInputElementClick = React.useCallback(function (event) {
+  var onInputElementClick = require$$0.useCallback(function (event) {
     event.stopPropagation();
   }, []);
-  var getInputProps = React.useMemo(function () {
+  var getInputProps = require$$0.useMemo(function () {
     return function () {
       var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
           _ref3$refKey = _ref3.refKey,
@@ -4716,9 +4801,9 @@ function reducer(state, action) {
 
 function noop$1() {}
 
-const WebCamComponent = React.forwardRef(({ setImageFile, setImageSrc, imageSrc, backgroundStyle }, ref) => {
-    const webcamRef = React.useRef(null);
-    const [displayCamera, setDisplayCamera] = React.useState(false);
+const WebCamComponent = require$$0.forwardRef(({ setImageFile, setImageSrc, imageSrc, backgroundStyle }, ref) => {
+    const webcamRef = require$$0.useRef(null);
+    const [displayCamera, setDisplayCamera] = require$$0.useState(false);
     const capture_image = async () => {
         const imageSrc = webcamRef.current?.getScreenshot();
         if (imageSrc) {
@@ -4726,7 +4811,7 @@ const WebCamComponent = React.forwardRef(({ setImageFile, setImageSrc, imageSrc,
             setImageFile(convertBase64StringToFile(imageSrc, `unknown-${Date.now()}.jpg`));
         }
     };
-    const onDrop = React.useCallback(async (acceptedFiles) => {
+    const onDrop = require$$0.useCallback(async (acceptedFiles) => {
         const file = acceptedFiles[0];
         if (file) {
             const compressedFile = await handleImageCompression(file);
@@ -4756,31 +4841,26 @@ const WebCamComponent = React.forwardRef(({ setImageFile, setImageSrc, imageSrc,
             }
         }
     };
-    React.useImperativeHandle(ref, () => ({
+    require$$0.useImperativeHandle(ref, () => ({
         close_camera: () => {
             setDisplayCamera(false);
             setImageSrc(null);
         },
     }));
-    return (jsxRuntime.jsxs("div", { className: `flex flex-col items-center gap-4 ${backgroundStyle ? backgroundStyle : 'bg-white'} p-16 pt-12 rounded-md`, children: [jsxRuntime.jsxs("div", { children: [jsxRuntime.jsx("h5", { className: "font-semibold", children: "Capture Image" }), jsxRuntime.jsx("p", { className: 'text-sm text-gray-500', children: "Click to open the camera module and allow the browser to access your camera." })] }), imageSrc === null ? (jsxRuntime.jsx(jsxRuntime.Fragment, { children: displayCamera ? (jsxRuntime.jsx("div", { children: jsxRuntime.jsxs("div", { className: 'relative flex flex-col justify-center', id: 'container', children: [jsxRuntime.jsx(Webcam, { audio: false, height: 400, width: 400, ref: webcamRef, screenshotFormat: 'image/jpeg', className: '  rounded-md' }), jsxRuntime.jsxs("div", { className: 'flex items-center space-x-2', children: [jsxRuntime.jsxs("button", { onClick: capture_image, className: 'mt-5 py-1 text-white bg-[#4327B2] border-[#4327B2] border-[1px] px-5 rounded-md cursor-pointer', children: [jsxRuntime.jsx(AiOutlineCamera, { className: 'mr-2 inline-block ' }), " Capture Photo"] }), jsxRuntime.jsx("button", { onClick: () => {
+    return (jsxRuntime.jsxs("div", { className: `flex flex-col items-center gap-4 ${backgroundStyle ? backgroundStyle : 'bg-white'} p-16 pt-12 rounded-md`, children: [jsxRuntime.jsxs("div", { children: [jsxRuntime.jsx("h5", { className: "font-semibold", children: "Capture Image" }), jsxRuntime.jsx("p", { className: 'text-sm text-gray-500', children: "Click to open the camera module and allow the browser to access your camera." })] }), imageSrc === null ? (jsxRuntime.jsx(jsxRuntime.Fragment, { children: displayCamera ? (jsxRuntime.jsx("div", { children: jsxRuntime.jsxs("div", { className: 'relative flex flex-col justify-center', id: 'container', children: [jsxRuntime.jsx(Webcam, { audio: false, height: 400, width: 400, ref: webcamRef, screenshotFormat: 'image/jpeg', className: '  rounded-md' }), jsxRuntime.jsxs("div", { className: 'flex items-center space-x-2', children: [jsxRuntime.jsxs("button", { onClick: capture_image, className: 'mt-5 py-1 text-white bg-[#4327B2] border-[#4327B2] border-[1px] flex items-center justify-center px-5 rounded-md cursor-pointer', children: [jsxRuntime.jsx(Camera, { className: 'mr-2 inline-block ', size: 15 }), " Capture Photo"] }), jsxRuntime.jsx("button", { onClick: () => {
                                             setDisplayCamera(false);
                                         }, className: 'mt-5 text-[#4327B2] border-[#4327B2] border-[1px] px-4 py-1 rounded-md cursor-pointer', children: "Close Camera" })] })] }) })) : (jsxRuntime.jsxs("div", { ...getRootProps(), className: `relative mt-5 flex w-full min-h-[300px] flex-col items-center justify-center rounded-md border border-gray-300 bg-white p-8
-              ${isDragActive ? 'bg-destructive/10' : 'bg-white'}`, children: [jsxRuntime.jsx(PiCamera, { size: 70, className: 'text-gray-500' }), jsxRuntime.jsxs("div", { className: 'mt-3 text-center', children: [jsxRuntime.jsxs("p", { className: 'text-gray-700', children: [jsxRuntime.jsx("span", { className: 'text-primary cursor-pointer font-semibold', children: "Click to capture" }), ' ', "or drag and drop"] }), jsxRuntime.jsx("p", { className: 'text-gray-400', children: "SVG, PNG, JPG or GIF (max. 800x400px)" })] }), jsxRuntime.jsxs("div", { className: 'mt-5 flex w-full flex-col  items-center gap-2 md:flex-row', children: [jsxRuntime.jsx("button", { onClick: (e) => {
+              ${isDragActive ? 'bg-destructive/10' : 'bg-white'}`, children: [jsxRuntime.jsx(Camera, { size: 70, className: 'text-gray-500' }), jsxRuntime.jsxs("div", { className: 'mt-3 text-center', children: [jsxRuntime.jsxs("p", { className: 'text-gray-700', children: [jsxRuntime.jsx("span", { className: 'text-primary cursor-pointer font-semibold', children: "Click to capture" }), ' ', "or drag and drop"] }), jsxRuntime.jsx("p", { className: 'text-gray-400', children: "SVG, PNG, JPG or GIF (max. 800x400px)" })] }), jsxRuntime.jsxs("div", { className: 'mt-5 flex w-full flex-col  items-center gap-2 md:flex-row', children: [jsxRuntime.jsx("button", { onClick: (e) => {
                                         e.preventDefault();
                                         e.stopPropagation();
                                         setDisplayCamera(true);
-                                    }, className: 'flex-grow basis-10 md:basis-10 text-[#4327B2] border-[#4327B2] border-[1px] px-4 py-1 rounded-md cursor-pointer', children: "Open Camera" }), jsxRuntime.jsxs("div", { className: 'flex-grow basis-10  md:basis-10', children: [jsxRuntime.jsx("input", { type: 'file', id: 'file-input', accept: 'image/*', onChange: handleFileInputChange, className: 'hidden', ...getInputProps() }), jsxRuntime.jsxs("label", { htmlFor: 'file-input', className: 'bg-[#B9AEE7] text-primary flex w-full cursor-pointer items-center justify-center rounded-md p-2 font-medium', children: [jsxRuntime.jsx(PiCloudArrowUp, { size: 15, className: 'text-primary mr-2 inline-block ' }), jsxRuntime.jsx("span", { className: 'text-sm', children: " Upload Image" })] })] })] })] })) }))
+                                    }, className: 'flex-grow basis-10 md:basis-10 text-[#4327B2] border-[#4327B2] border-[1px] px-4 py-1 rounded-md cursor-pointer', children: "Open Camera" }), jsxRuntime.jsxs("div", { className: 'flex-grow basis-10  md:basis-10', children: [jsxRuntime.jsx("input", { type: 'file', id: 'file-input', accept: 'image/*', onChange: handleFileInputChange, className: 'hidden', ...getInputProps() }), jsxRuntime.jsxs("label", { htmlFor: 'file-input', className: 'bg-[#B9AEE7] text-primary flex w-full cursor-pointer items-center justify-center rounded-md p-2 font-medium', children: [jsxRuntime.jsx(CloudUpload, { size: 15, className: 'text-primary mr-2 inline-block ' }), jsxRuntime.jsx("span", { className: 'text-sm', children: " Upload Image" })] })] })] })] })) }))
                 :
                     jsxRuntime.jsxs("div", { className: 'relative mt-5 flex min-h-[300px] flex-col items-center justify-center rounded-md bg-white p-5', children: [jsxRuntime.jsx("img", { src: imageSrc && imageSrc, alt: 'Selected Image', width: 300, height: 300, className: 'selected-image' }), jsxRuntime.jsx("div", { className: 'flex w-full justify-start', children: jsxRuntime.jsx("button", { onClick: () => setImageSrc(null), className: 'mt-5 text-[#4327B2] border-[#4327B2] border-[1px] px-4 py-1 rounded-md cursor-pointer', children: "Cancel" }) })] })] }));
 });
 
-// THIS FILE IS AUTO GENERATED
-function FaTimes (props) {
-  return GenIcon({"attr":{"viewBox":"0 0 352 512"},"child":[{"tag":"path","attr":{"d":"M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"},"child":[]}]})(props);
-}
-
 const Dialog = ({ children, closeDialog }) => {
-    return (jsxRuntime.jsx("div", { className: 'absolute inset-0 backdrop-blur-2xl flex justify-center items-center', children: jsxRuntime.jsxs("div", { className: 'backdrop-blur-sm p-6 shadow flex flex-col', children: [jsxRuntime.jsx(FaTimes, { onClick: closeDialog, className: ' text-black text-xl mb-4 self-end cursor-pointer' }), jsxRuntime.jsx("div", { className: 'bg-white shadow-md p-4 rounded-md mx-auto w-fit lg:w-1/2 h-fit', children: children })] }) }));
+    return (jsxRuntime.jsx("div", { className: 'absolute inset-0 backdrop-blur-2xl flex justify-center items-center', children: jsxRuntime.jsxs("div", { className: 'backdrop-blur-sm p-6 shadow flex flex-col', children: [jsxRuntime.jsx(X, { onClick: closeDialog, className: ' text-black text-xl mb-4 self-end cursor-pointer' }), jsxRuntime.jsx("div", { className: 'bg-white shadow-md p-4 rounded-md mx-auto w-fit lg:w-1/2 h-fit', children: children })] }) }));
 };
 
 function bind(fn, thisArg) {
@@ -10491,15 +10571,15 @@ var axios = axios$1.create({
 });
 
 const EnrollUser = ({ authInstance, onSuccess }) => {
-    const inputRef = React.useRef(null);
-    const webCamRef = React.useRef(null);
-    const [inputName, setInputName] = React.useState('');
-    const [imageSrc, setImageSrc] = React.useState(null);
-    const [imageFile, setImageFile] = React.useState(null);
-    const [isLoading, setIsLoading] = React.useState(false);
-    const [uploadCompleted, setUploadCompleted] = React.useState(false);
-    const [uploadError, setUploadError] = React.useState(false);
-    const [openDialog, setOpenDialog] = React.useState(false);
+    const inputRef = require$$0.useRef(null);
+    const webCamRef = require$$0.useRef(null);
+    const [inputName, setInputName] = require$$0.useState('');
+    const [imageSrc, setImageSrc] = require$$0.useState(null);
+    const [imageFile, setImageFile] = require$$0.useState(null);
+    const [isLoading, setIsLoading] = require$$0.useState(false);
+    const [uploadCompleted, setUploadCompleted] = require$$0.useState(false);
+    const [uploadError, setUploadError] = require$$0.useState(false);
+    const [openDialog, setOpenDialog] = require$$0.useState(false);
     const create_person_with_image = async () => {
         setIsLoading(true);
         setOpenDialog(true);
@@ -10532,14 +10612,14 @@ const EnrollUser = ({ authInstance, onSuccess }) => {
             setOpenDialog(true);
         }
     };
-    const close_camera = React.useCallback(() => {
+    const close_camera = require$$0.useCallback(() => {
         setImageSrc(null);
         setUploadCompleted(false);
         setIsLoading(false);
         setUploadError(false);
         webCamRef.current?.close_camera();
     }, []);
-    React.useEffect(() => {
+    require$$0.useEffect(() => {
         if (inputRef.current) {
             inputRef.current.focus();
         }
@@ -10548,13 +10628,13 @@ const EnrollUser = ({ authInstance, onSuccess }) => {
 };
 
 const FaceRecognition = ({ authInstance, onSuccess }) => {
-    const [imageSrc, setImageSrc] = React.useState(null);
-    const [imageFile, setImageFile] = React.useState(null);
-    const webCamRef = React.useRef(null);
-    const [isLoading, setIsLoading] = React.useState(false);
-    const [verifyFaceResult, setVerifyFaceResult] = React.useState();
-    const [error, setError] = React.useState(null);
-    const [openDialog, setOpenDialog] = React.useState(false);
+    const [imageSrc, setImageSrc] = require$$0.useState(null);
+    const [imageFile, setImageFile] = require$$0.useState(null);
+    const webCamRef = require$$0.useRef(null);
+    const [isLoading, setIsLoading] = require$$0.useState(false);
+    const [verifyFaceResult, setVerifyFaceResult] = require$$0.useState();
+    const [error, setError] = require$$0.useState(null);
+    const [openDialog, setOpenDialog] = require$$0.useState(false);
     const identify_user_face = async () => {
         setIsLoading(true);
         setOpenDialog(true);
@@ -10596,7 +10676,7 @@ const FaceRecognition = ({ authInstance, onSuccess }) => {
             setOpenDialog(true);
         }
     };
-    const close_camera = React.useCallback(() => {
+    const close_camera = require$$0.useCallback(() => {
         setImageSrc(null);
         setVerifyFaceResult(undefined);
         setIsLoading(false);
@@ -10607,16 +10687,16 @@ const FaceRecognition = ({ authInstance, onSuccess }) => {
 };
 
 const CompareFaces = ({ authInstance, onSuccess, imageUrl }) => {
-    const [selectedFile, setSelectedFile] = React.useState(null);
-    const [imageFile, setImageFile] = React.useState(null);
-    const [capturedImage, setCapturedImage] = React.useState(null);
-    const [capturedImage2, setCapturedImage2] = React.useState(null);
-    const [isLoading, setIsLoading] = React.useState(false);
-    const [facesSimilarity, setFacesSimilarity] = React.useState(null);
-    const [openDialog, setOpenDialog] = React.useState(false);
-    const [comparedImages, setComparedImages] = React.useState(null);
-    const [error, setError] = React.useState(null);
-    const webCamRef = React.useRef(null);
+    const [selectedFile, setSelectedFile] = require$$0.useState(null);
+    const [imageFile, setImageFile] = require$$0.useState(null);
+    const [capturedImage, setCapturedImage] = require$$0.useState(null);
+    const [capturedImage2, setCapturedImage2] = require$$0.useState(null);
+    const [isLoading, setIsLoading] = require$$0.useState(false);
+    const [facesSimilarity, setFacesSimilarity] = require$$0.useState(null);
+    const [openDialog, setOpenDialog] = require$$0.useState(false);
+    const [comparedImages, setComparedImages] = require$$0.useState(null);
+    const [error, setError] = require$$0.useState(null);
+    const webCamRef = require$$0.useRef(null);
     const compareImages = async () => {
         setIsLoading(true);
         setOpenDialog(true);
@@ -10653,14 +10733,14 @@ const CompareFaces = ({ authInstance, onSuccess, imageUrl }) => {
             setIsLoading(false);
         }
     };
-    const close_camera = React.useCallback(() => {
+    const close_camera = require$$0.useCallback(() => {
         setCapturedImage2(null);
         setFacesSimilarity(null);
         setIsLoading(false);
         setError(null);
         webCamRef.current?.close_camera();
     }, []);
-    React.useEffect(() => {
+    require$$0.useEffect(() => {
         const processImage = async () => {
             if (!imageUrl)
                 return;
@@ -10741,7 +10821,7 @@ var VIEWBOX_CENTER_Y = 50;
 
 function Path(_a) {
     var className = _a.className, counterClockwise = _a.counterClockwise, dashRatio = _a.dashRatio, pathRadius = _a.pathRadius, strokeWidth = _a.strokeWidth, style = _a.style;
-    return (React.createElement("path", { className: className, style: Object.assign({}, style, getDashStyle({ pathRadius: pathRadius, dashRatio: dashRatio, counterClockwise: counterClockwise })), d: getPathDescription({
+    return (require$$0.createElement("path", { className: className, style: Object.assign({}, style, getDashStyle({ pathRadius: pathRadius, dashRatio: dashRatio, counterClockwise: counterClockwise })), d: getPathDescription({
             pathRadius: pathRadius,
             counterClockwise: counterClockwise,
         }), strokeWidth: strokeWidth, fillOpacity: 0 }));
@@ -10785,11 +10865,11 @@ var CircularProgressbar = (function (_super) {
         var _a = this.props, circleRatio = _a.circleRatio, className = _a.className, classes = _a.classes, counterClockwise = _a.counterClockwise, styles = _a.styles, strokeWidth = _a.strokeWidth, text = _a.text;
         var pathRadius = this.getPathRadius();
         var pathRatio = this.getPathRatio();
-        return (React.createElement("svg", { className: classes.root + " " + className, style: styles.root, viewBox: "0 0 " + VIEWBOX_WIDTH + " " + VIEWBOX_HEIGHT, "data-test-id": "CircularProgressbar" },
-            this.props.background ? (React.createElement("circle", { className: classes.background, style: styles.background, cx: VIEWBOX_CENTER_X, cy: VIEWBOX_CENTER_Y, r: VIEWBOX_HEIGHT_HALF })) : null,
-            React.createElement(Path, { className: classes.trail, counterClockwise: counterClockwise, dashRatio: circleRatio, pathRadius: pathRadius, strokeWidth: strokeWidth, style: styles.trail }),
-            React.createElement(Path, { className: classes.path, counterClockwise: counterClockwise, dashRatio: pathRatio * circleRatio, pathRadius: pathRadius, strokeWidth: strokeWidth, style: styles.path }),
-            text ? (React.createElement("text", { className: classes.text, style: styles.text, x: VIEWBOX_CENTER_X, y: VIEWBOX_CENTER_Y }, text)) : null));
+        return (require$$0.createElement("svg", { className: classes.root + " " + className, style: styles.root, viewBox: "0 0 " + VIEWBOX_WIDTH + " " + VIEWBOX_HEIGHT, "data-test-id": "CircularProgressbar" },
+            this.props.background ? (require$$0.createElement("circle", { className: classes.background, style: styles.background, cx: VIEWBOX_CENTER_X, cy: VIEWBOX_CENTER_Y, r: VIEWBOX_HEIGHT_HALF })) : null,
+            require$$0.createElement(Path, { className: classes.trail, counterClockwise: counterClockwise, dashRatio: circleRatio, pathRadius: pathRadius, strokeWidth: strokeWidth, style: styles.trail }),
+            require$$0.createElement(Path, { className: classes.path, counterClockwise: counterClockwise, dashRatio: pathRatio * circleRatio, pathRadius: pathRadius, strokeWidth: strokeWidth, style: styles.path }),
+            text ? (require$$0.createElement("text", { className: classes.text, style: styles.text, x: VIEWBOX_CENTER_X, y: VIEWBOX_CENTER_Y }, text)) : null));
     };
     CircularProgressbar.defaultProps = {
         background: false,
@@ -10817,14 +10897,14 @@ var CircularProgressbar = (function (_super) {
         text: '',
     };
     return CircularProgressbar;
-}(React.Component));
+}(require$$0.Component));
 
 function CircularProgressbarWithChildren(props) {
     props.children; var circularProgressbarProps = __rest(props, ["children"]);
-    return (React.createElement("div", { "data-test-id": "CircularProgressbarWithChildren" },
-        React.createElement("div", { style: { position: 'relative', width: '100%', height: '100%' } },
-            React.createElement(CircularProgressbar, __assign({}, circularProgressbarProps)),
-            props.children ? (React.createElement("div", { "data-test-id": "CircularProgressbarWithChildren__children", style: {
+    return (require$$0.createElement("div", { "data-test-id": "CircularProgressbarWithChildren" },
+        require$$0.createElement("div", { style: { position: 'relative', width: '100%', height: '100%' } },
+            require$$0.createElement(CircularProgressbar, __assign({}, circularProgressbarProps)),
+            props.children ? (require$$0.createElement("div", { "data-test-id": "CircularProgressbarWithChildren__children", style: {
                     position: 'absolute',
                     width: '100%',
                     height: '100%',
@@ -10874,18 +10954,12 @@ function removeUndefinedValues(obj) {
     return obj;
 }
 
-// THIS FILE IS AUTO GENERATED
-function GoVideo (props) {
-  return GenIcon({"attr":{"viewBox":"0 0 24 24"},"child":[{"tag":"path","attr":{"d":"M0 4.75C0 3.784.784 3 1.75 3h20.5c.966 0 1.75.784 1.75 1.75v14.5A1.75 1.75 0 0 1 22.25 21H1.75A1.75 1.75 0 0 1 0 19.25Zm1.75-.25a.25.25 0 0 0-.25.25v14.5c0 .138.112.25.25.25h20.5a.25.25 0 0 0 .25-.25V4.75a.25.25 0 0 0-.25-.25Z"},"child":[]},{"tag":"path","attr":{"d":"M9 15.584V8.416a.5.5 0 0 1 .77-.42l5.576 3.583a.5.5 0 0 1 0 .842L9.77 16.005a.5.5 0 0 1-.77-.42Z"},"child":[]}]})(props);
-}
-
 const VidWebCam = (({ setMessage, setError, setOpenDialog, title, setResult, onSuccess, }) => {
-    const [displayCamera, setDisplayCamera] = React.useState(false);
-    const videoRef = React.useRef(null);
-    const socketRef = React.useRef(null);
-    const [instructions, setInstructions] = React.useState('Waiting for instructions...');
-    // const [response, setResponse] = useState<string>("");
-    React.useEffect(() => {
+    const [displayCamera, setDisplayCamera] = require$$0.useState(false);
+    const videoRef = require$$0.useRef(null);
+    const socketRef = require$$0.useRef(null);
+    const [instructions, setInstructions] = require$$0.useState('Waiting for instructions...');
+    require$$0.useEffect(() => {
         if (!displayCamera) {
             return;
         }
@@ -10900,7 +10974,6 @@ const VidWebCam = (({ setMessage, setError, setOpenDialog, title, setResult, onS
                 setInstructions(message.instruction);
             }
             if (message.results) {
-                // setResponse(prev => prev + `Final Results: ${JSON.stringify(message.results)}\n`);
                 setInstructions('Liveness detection completed!');
                 setResult(message.results);
                 onSuccess(message.results);
@@ -10910,7 +10983,6 @@ const VidWebCam = (({ setMessage, setError, setOpenDialog, title, setResult, onS
                 setDisplayCamera(false);
             }
             if (message.error) {
-                // setResponse(prev => prev + `Error: ${message.error}\n`);
                 setError?.(message.error);
             }
         };
@@ -10918,14 +10990,13 @@ const VidWebCam = (({ setMessage, setError, setOpenDialog, title, setResult, onS
             // setResponse(prev => prev + "Connection closed.\n");
         };
         socketRef.current.onerror = (error) => {
-            // setResponse(prev => prev + `WebSocket error: ${error.toString()}\n`);
             console.error(error);
         };
         return () => {
             socketRef.current?.close();
         };
     }, [displayCamera]);
-    React.useEffect(() => {
+    require$$0.useEffect(() => {
         if (!displayCamera) {
             return;
         }
@@ -10938,13 +11009,11 @@ const VidWebCam = (({ setMessage, setError, setOpenDialog, title, setResult, onS
             video.srcObject = stream;
             video.onloadedmetadata = () => {
                 video.play();
-                console.log('Webcam stream loaded.');
                 sendFrame();
             };
         })
             .catch((err) => {
             console.error('Error accessing webcam:', err);
-            // setResponse(prev => prev + `Error accessing webcam: ${err.message}\n`);
             alert('Please allow access to your webcam.');
         });
         const canvas = document.createElement('canvas');
@@ -10989,7 +11058,7 @@ const VidWebCam = (({ setMessage, setError, setOpenDialog, title, setResult, onS
                                 e.preventDefault();
                                 e.stopPropagation();
                                 setDisplayCamera(false);
-                            }, children: "Close Liveness" })] })) : (jsxRuntime.jsxs("div", { className: 'relative mt-5 flex min-h-[300px] flex-col items-center justify-center rounded-md border border-gray-300 bg-white p-8', children: [jsxRuntime.jsx(GoVideo, { size: 70, className: 'text-gray-500' }), jsxRuntime.jsx("div", { className: 'mt-3 text-center', children: jsxRuntime.jsx("p", { className: 'text-gray-700', children: jsxRuntime.jsx("span", { className: 'text-[#4327B2] cursor-pointer font-semibold', children: "Click on open camera to start recording" }) }) }), jsxRuntime.jsx("div", { className: 'mt-5 flex w-full flex-col items-center gap-2 md:flex-row', children: jsxRuntime.jsx("button", { onClick: (e) => {
+                            }, children: "Close Liveness" })] })) : (jsxRuntime.jsxs("div", { className: 'relative mt-5 flex min-h-[300px] flex-col items-center justify-center rounded-md border border-gray-300 bg-white p-8', children: [jsxRuntime.jsx(SquarePlay, { size: 70, className: 'text-gray-500' }), jsxRuntime.jsx("div", { className: 'mt-3 text-center', children: jsxRuntime.jsx("p", { className: 'text-gray-700', children: jsxRuntime.jsx("span", { className: 'text-[#4327B2] cursor-pointer font-semibold', children: "Click on open camera to start recording" }) }) }), jsxRuntime.jsx("div", { className: 'mt-5 flex w-full flex-col items-center gap-2 md:flex-row', children: jsxRuntime.jsx("button", { onClick: (e) => {
                                     e.preventDefault();
                                     e.stopPropagation();
                                     setDisplayCamera(true);
@@ -10997,11 +11066,11 @@ const VidWebCam = (({ setMessage, setError, setOpenDialog, title, setResult, onS
 });
 
 const LivenessCheck = ({ onSuccess }) => {
-    const [message, setMessage] = React.useState(null);
-    const [error, setError] = React.useState(null);
-    const [result, setResult] = React.useState(null);
-    const [openDialog, setOpenDialog] = React.useState(false);
-    return (jsxRuntime.jsxs("main", { className: 'flex w-full flex-col p-8 relative', children: [jsxRuntime.jsx("h1", { children: "Liveness Check" }), jsxRuntime.jsx("div", { className: 'flex-1', children: jsxRuntime.jsx(VidWebCam, { title: 'Start liveness check', setMessage: setMessage, setError: setError, setOpenDialog: setOpenDialog, setResult: setResult, onSuccess: onSuccess }) }), openDialog && jsxRuntime.jsxs(Dialog, { closeDialog: () => { setOpenDialog(false); }, children: [jsxRuntime.jsx("div", { className: 'flex justify-center p-6', children: message && (jsxRuntime.jsxs("div", { className: 'relative flex h-52 w-full px-6 flex-col items-center justify-center rounded-md bg-white', children: [jsxRuntime.jsx("h5", { className: 'mb-2 text-center', children: message }), jsxRuntime.jsxs("div", { children: [jsxRuntime.jsxs("div", { children: [jsxRuntime.jsx("span", { children: jsxRuntime.jsx("input", { type: 'radio', checked: result?.blink_detected, readOnly: true }) }), ' ', jsxRuntime.jsx("span", { children: "Eyes Blink" })] }), jsxRuntime.jsxs("div", { children: [jsxRuntime.jsx("span", { children: jsxRuntime.jsx("input", { type: 'radio', checked: result?.mouth_open_detected, readOnly: true }) }), ' ', jsxRuntime.jsx("span", { children: "Mouth Open" })] }), jsxRuntime.jsxs("div", { children: [jsxRuntime.jsx("span", { children: jsxRuntime.jsx("input", { type: 'radio', checked: result?.head_movement_detected, readOnly: true }) }), ' ', jsxRuntime.jsx("span", { children: "Head Movement" })] }), jsxRuntime.jsxs("div", { children: [jsxRuntime.jsx("span", { children: jsxRuntime.jsx("input", { type: 'radio', checked: result?.is_live, readOnly: true }) }), ' ', jsxRuntime.jsx("span", { children: "Live" })] })] })] })) }), error !== null && (jsxRuntime.jsx("div", { className: 'text-center', children: jsxRuntime.jsx("h5", { className: '', children: error }) }))] })] }));
+    const [message, setMessage] = require$$0.useState(null);
+    const [error, setError] = require$$0.useState(null);
+    const [result, setResult] = require$$0.useState(null);
+    const [openDialog, setOpenDialog] = require$$0.useState(false);
+    return (jsxRuntime.jsxs("main", { className: 'flex w-full flex-col p-8 relative', children: [jsxRuntime.jsx("h1", { className: 'font-bold text-xl', children: "Liveness Check" }), jsxRuntime.jsx("div", { className: 'flex-1', children: jsxRuntime.jsx(VidWebCam, { title: 'Start liveness check', setMessage: setMessage, setError: setError, setOpenDialog: setOpenDialog, setResult: setResult, onSuccess: onSuccess }) }), openDialog && jsxRuntime.jsxs(Dialog, { closeDialog: () => { setOpenDialog(false); }, children: [jsxRuntime.jsx("div", { className: 'flex justify-center p-6', children: message && (jsxRuntime.jsxs("div", { className: 'relative flex h-52 w-full px-6 flex-col items-center justify-center rounded-md bg-white', children: [jsxRuntime.jsx("h5", { className: 'mb-2 text-center', children: message }), jsxRuntime.jsxs("div", { children: [jsxRuntime.jsxs("div", { children: [jsxRuntime.jsx("span", { children: jsxRuntime.jsx("input", { type: 'radio', checked: result?.blink_detected, readOnly: true }) }), ' ', jsxRuntime.jsx("span", { children: "Eyes Blink" })] }), jsxRuntime.jsxs("div", { children: [jsxRuntime.jsx("span", { children: jsxRuntime.jsx("input", { type: 'radio', checked: result?.mouth_open_detected, readOnly: true }) }), ' ', jsxRuntime.jsx("span", { children: "Mouth Open" })] }), jsxRuntime.jsxs("div", { children: [jsxRuntime.jsx("span", { children: jsxRuntime.jsx("input", { type: 'radio', checked: result?.head_movement_detected, readOnly: true }) }), ' ', jsxRuntime.jsx("span", { children: "Head Movement" })] }), jsxRuntime.jsxs("div", { children: [jsxRuntime.jsx("span", { children: jsxRuntime.jsx("input", { type: 'radio', checked: result?.is_live, readOnly: true }) }), ' ', jsxRuntime.jsx("span", { children: "Live" })] })] })] })) }), error !== null && (jsxRuntime.jsx("div", { className: 'text-center', children: jsxRuntime.jsx("h5", { className: '', children: error }) }))] })] }));
 };
 
 class TaniAuth {

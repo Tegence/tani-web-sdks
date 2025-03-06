@@ -3,7 +3,7 @@ import {
   buildStyles,
   CircularProgressbarWithChildren,
 } from 'react-circular-progressbar';
-import { GoVideo } from 'react-icons/go';
+import { SquarePlay } from "lucide-react";
 
 
 import { VidWebCamProps } from '../../types/WebcamTypes';
@@ -29,7 +29,6 @@ const VidWebCam = (
     const [instructions, setInstructions] = useState<string>(
       'Waiting for instructions...'
     );
-    // const [response, setResponse] = useState<string>("");
 
     useEffect(() => {
       if (!displayCamera) {
@@ -52,7 +51,6 @@ const VidWebCam = (
         }
 
         if (message.results) {
-          // setResponse(prev => prev + `Final Results: ${JSON.stringify(message.results)}\n`);
           setInstructions('Liveness detection completed!');
           setResult(message.results);
           onSuccess(message.results);
@@ -63,7 +61,6 @@ const VidWebCam = (
         }
 
         if (message.error) {
-          // setResponse(prev => prev + `Error: ${message.error}\n`);
           setError?.(message.error);
         }
       };
@@ -73,7 +70,6 @@ const VidWebCam = (
       };
 
       socketRef.current.onerror = (error) => {
-        // setResponse(prev => prev + `WebSocket error: ${error.toString()}\n`);
         console.error(error)
       };
 
@@ -95,13 +91,11 @@ const VidWebCam = (
           video.srcObject = stream;
           video.onloadedmetadata = () => {
             video.play();
-            // console.log('Webcam stream loaded.');
             sendFrame();
           };
         })
         .catch((err) => {
           console.error('Error accessing webcam:', err);
-          // setResponse(prev => prev + `Error accessing webcam: ${err.message}\n`);
           alert('Please allow access to your webcam.');
         });
 
@@ -193,15 +187,10 @@ const VidWebCam = (
               >
                 Close Liveness
               </button>
-              {/* <textarea
-                readOnly
-                className="w-4/5 h-40 p-2 border border-gray-400"
-                value={response}
-              /> */}
             </div>
           ) : (
             <div className='relative mt-5 flex min-h-[300px] flex-col items-center justify-center rounded-md border border-gray-300 bg-white p-8'>
-              <GoVideo size={70} className='text-gray-500' />
+              <SquarePlay size={70} className='text-gray-500'/>
               <div className='mt-3 text-center'>
                 <p className='text-gray-700'>
                   <span className='text-[#4327B2] cursor-pointer font-semibold'>

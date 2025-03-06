@@ -1,7 +1,6 @@
 import React, { forwardRef, useRef, useState,useCallback, useImperativeHandle } from "react";
 import Webcam from "react-webcam";
-import { AiOutlineCamera } from "react-icons/ai";
-import { PiCamera, PiCloudArrowUp } from 'react-icons/pi';
+import { Camera, CloudUpload } from "lucide-react";
 import { WebCamProps } from '../../types/WebcamTypes';
 import {
   convertBase64StringToFile,
@@ -101,9 +100,9 @@ const WebCamComponent = forwardRef(({setImageFile, setImageSrc, imageSrc, backgr
                         />
                         <div className='flex items-center space-x-2'>
                             <button onClick={capture_image} 
-                              className='mt-5 py-1 text-white bg-[#4327B2] border-[#4327B2] border-[1px] px-5 rounded-md cursor-pointer'
+                              className='mt-5 py-1 text-white bg-[#4327B2] border-[#4327B2] border-[1px] flex items-center justify-center px-5 rounded-md cursor-pointer'
                             >
-                                <AiOutlineCamera className='mr-2 inline-block ' /> Capture
+                                <Camera className='mr-2 inline-block ' size={15} /> Capture
                                 Photo
                             </button>
                             <button
@@ -123,7 +122,7 @@ const WebCamComponent = forwardRef(({setImageFile, setImageSrc, imageSrc, backgr
               className={`relative mt-5 flex w-full min-h-[300px] flex-col items-center justify-center rounded-md border border-gray-300 bg-white p-8
               ${isDragActive ? 'bg-destructive/10' : 'bg-white'}`}
             >
-                <PiCamera size={70} className='text-gray-500' />
+                <Camera size={70} className='text-gray-500'/>
                 <div className='mt-3 text-center'>
                   <p className='text-gray-700'>
                     <span className='text-primary cursor-pointer font-semibold'>
@@ -159,7 +158,7 @@ const WebCamComponent = forwardRef(({setImageFile, setImageSrc, imageSrc, backgr
                       htmlFor='file-input'
                       className='bg-[#B9AEE7] text-primary flex w-full cursor-pointer items-center justify-center rounded-md p-2 font-medium'
                     >
-                      <PiCloudArrowUp
+                      <CloudUpload 
                         size={15}
                         className='text-primary mr-2 inline-block '
                       />

@@ -12,7 +12,7 @@ export  const LivenessCheck:React.FC<LivenessCheckProps> = ({onSuccess}) => {
     const [openDialog, setOpenDialog] = useState(false);
   return (
     <main className='flex w-full flex-col p-8 relative'>
-      <h1>Liveness Check</h1>
+      <h1 className='font-bold text-xl'>Liveness Check</h1>
       <div className='flex-1'>
         <VidWebCam
             title='Start liveness check'
