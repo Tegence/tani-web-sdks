@@ -4,6 +4,8 @@ import { LivenessDetection } from '../types/WebcamTypes';
 import Dialog from './utils/Dialog';
 import "../global.css"
 import { LivenessCheckProps } from '../types/TaniAuthTypes';
+import { Check } from "lucide-react";
+
 
 export  const LivenessCheck:React.FC<LivenessCheckProps> = ({onSuccess}) => {
     const [message, setMessage] = useState<string | null>(null);
@@ -12,7 +14,7 @@ export  const LivenessCheck:React.FC<LivenessCheckProps> = ({onSuccess}) => {
     const [openDialog, setOpenDialog] = useState(false);
   return (
     <main className='flex w-full flex-col p-8 relative'>
-      <h1 className='font-bold text-xl'>Liveness Check</h1>
+      <h1 className='font-bold text-xl text-center'>Liveness Check</h1>
       <div className='flex-1'>
         <VidWebCam
             title='Start liveness check'
@@ -24,44 +26,49 @@ export  const LivenessCheck:React.FC<LivenessCheckProps> = ({onSuccess}) => {
         />
       </div>
       { openDialog && <Dialog closeDialog={() => {setOpenDialog(false);}}>
-        <div className='flex justify-center p-6'>
+        <div className='flex justify-center p-6 w-full'>
             {message && (
-              <div className='relative flex h-52 w-full px-6 flex-col items-center justify-center rounded-md bg-white'>
+              <div className='relative flex h-fit w-full px-6 flex-col items-center justify-center rounded-md bg-white'>
                 <h5 className='mb-2 text-center'>{message}</h5>
                 <div>
-                  <div>
+                  <div className='flex items-center gap-1'>
                     <span>
-                      <input 
-                        type='radio' 
-                        checked={result?.blink_detected} 
-                        readOnly
+                      <Check 
+                        strokeWidth={3} 
+                        size={18} 
+                        className={`font-bold ${result?.blink_detected ? 'text-[#64C155]': 'text-[#F2F4F7]'}`}
                       />
+                      
                     </span>{' '}
                     <span>Eyes Blink</span>
                   </div>
-                  <div>
+                  <div className='flex items-center gap-1'>
                     <span>
-                      <input
-                        type='radio'
-                        checked={result?.mouth_open_detected}
-                        readOnly
+                      <Check 
+                        strokeWidth={3} 
+                        size={18} 
+                        className={`font-bold ${result?.mouth_open_detected ? 'text-[#64C155]': 'text-[#F2F4F7]'}`}
                       />
                     </span>{' '}
                     <span>Mouth Open</span>
                   </div>
-                  <div>
+                  <div className='flex items-center gap-1'>
                     <span>
-                      <input
-                        type='radio'
-                        checked={result?.head_movement_detected}
-                        readOnly
+                      <Check 
+                        strokeWidth={3} 
+                        size={18} 
+                        className={`font-bold ${result?.head_movement_detected ? 'text-[#64C155]': 'text-[#F2F4F7]'}`}
                       />
                     </span>{' '}
                     <span>Head Movement</span>
                   </div>
-                  <div>
+                  <div className='flex items-center gap-1'>
                     <span>
-                      <input type='radio' checked={result?.is_live} readOnly/>
+                      <Check 
+                        strokeWidth={3} 
+                        size={18} 
+                        className={`font-bold ${result?.is_live ? 'text-[#64C155]': 'text-[#F2F4F7]'}`}
+                      />
                     </span>{' '}
                     <span>Live</span>
                   </div>

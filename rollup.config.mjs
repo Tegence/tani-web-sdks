@@ -5,6 +5,8 @@ import dts from "rollup-plugin-dts";
 import postcss from "rollup-plugin-postcss";
 import json from "@rollup/plugin-json"; 
 import polyfillNode from "rollup-plugin-polyfill-node";
+import image from '@rollup/plugin-image';
+import url from '@rollup/plugin-url';
 
 
 export default [
@@ -30,6 +32,14 @@ export default [
         commonjs(),
         polyfillNode(),
         json(),
+        image(),
+        url({
+          include: ['**/*.svg', '**/*.png', '**/*.jpg', '**/*.gif'],
+          limit: 0, // Set to 0 to always copy instead of inlining as base64
+          publicPath: '', // Optional
+          emitFiles: true,
+          fileName: '[name][hash][extname]',
+        }),
         typescript({
           tsconfig: "./tsconfig.json",
           exclude: ["**/*.test.tsx", "**/*.test.ts", "**/*.stories.ts"],

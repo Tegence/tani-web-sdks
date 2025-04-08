@@ -2,11 +2,13 @@ import React, { forwardRef, useRef, useState,useCallback, useImperativeHandle } 
 import Webcam from "react-webcam";
 import { Camera, CloudUpload } from "lucide-react";
 import { WebCamProps } from '../../types/WebcamTypes';
+import tani_vector from '../../assets/tani_vector.svg'
 import {
   convertBase64StringToFile,
   handleImageCompression,
 } from '../lib/helpers';
 import { useDropzone } from 'react-dropzone';
+
 
 export interface WebcamRef {
   close_camera: () => void;
@@ -190,6 +192,15 @@ const WebCamComponent = forwardRef(({setImageFile, setImageSrc, imageSrc, backgr
                 </div>
             </div>
         }
+        <div className='flex items-center justify-center gap-2 w-full pt-3'>
+          <p className='font-normal text-[#757575] text-sm '>Powered by {" "}</p>
+          <img
+            src={tani_vector}
+            alt='Tani icon'
+            width={42.9}
+            height={14}
+          />
+        </div>
     </div>
   );
 });

@@ -562,7 +562,7 @@ const createLucideIcon = (iconName, iconNode) => {
  */
 
 
-const __iconNode$3 = [
+const __iconNode$4 = [
   [
     "path",
     {
@@ -572,7 +572,18 @@ const __iconNode$3 = [
   ],
   ["circle", { cx: "12", cy: "13", r: "3", key: "1vg3eu" }]
 ];
-const Camera = createLucideIcon("Camera", __iconNode$3);
+const Camera = createLucideIcon("Camera", __iconNode$4);
+
+/**
+ * @license lucide-react v0.477.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+
+
+const __iconNode$3 = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
+const Check = createLucideIcon("Check", __iconNode$3);
 
 /**
  * @license lucide-react v0.477.0 - ISC
@@ -616,6 +627,8 @@ const __iconNode = [
   ["path", { d: "m6 6 12 12", key: "d8bk6v" }]
 ];
 const X = createLucideIcon("X", __iconNode);
+
+var img = "data:image/svg+xml,%3csvg width='44' height='14' viewBox='0 0 44 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M9.72409 3.04837L6.72044 6.10021L6.04768 5.43582C5.34206 4.73896 5.10419 4.63691 4.97443 4.97529C4.87933 5.22295 6.42111 6.83302 6.75317 6.83302C6.87314 6.83302 8.26195 5.49935 9.83955 3.86931C11.4173 2.23928 12.7718 0.905609 12.8499 0.905609C12.928 0.905609 13.4245 1.34102 13.953 1.87332L14.9143 2.8409L10.9225 6.83431C8.72699 9.03054 6.87159 10.8276 6.7993 10.8276C6.72701 10.8276 5.88674 10.0448 4.93191 9.08801C3.97708 8.13125 3.12083 7.34844 3.02908 7.34844C2.93721 7.34844 2.82665 7.44083 2.78323 7.55384C2.67834 7.82753 6.42291 11.6007 6.79943 11.6007C7.11036 11.6007 15.627 3.13896 15.627 2.82996C15.627 2.62482 13.0513 0.00657401 12.8431 2.32088e-06C12.7797 -0.00205939 11.3762 1.36975 9.72409 3.04837ZM9.82846 5.35116C8.23502 6.94577 6.87198 8.25044 6.79943 8.25044C6.72688 8.25044 5.94446 7.52562 5.06077 6.63973C4.17707 5.75384 3.36501 5.02902 3.25626 5.02902C3.01298 5.02902 0.550781 7.47884 0.550781 7.72097C0.550781 7.91361 6.1237 13.7305 6.50254 13.9331C6.82752 14.1071 6.91785 14.0383 8.35112 12.5275C9.54292 11.2711 9.59897 11.1875 9.38687 10.9812C9.17529 10.7754 9.09914 10.83 8.02692 11.9551C7.40209 12.6106 6.80961 13.147 6.71013 13.147C6.61078 13.147 5.34889 11.9245 3.90608 10.4304L1.28282 7.71375L2.26934 6.72723L3.256 5.74057L4.96541 7.4465C5.90568 8.38471 6.73255 9.15244 6.80304 9.15244C7.03124 9.15244 13.1787 2.9083 13.1787 2.67636C13.1787 2.54802 13.0817 2.45189 12.9522 2.45189C12.8276 2.45189 11.4219 3.75656 9.82846 5.35116ZM18.0629 3.54279V4.50483L19.4481 4.54143L20.8333 4.57802L20.8679 7.57394L20.9025 10.5699H21.9954H23.0883V7.54173V4.5136H24.5058H25.9232V3.54717V2.58075H21.993H18.0629V3.54279ZM41.2571 3.28946V3.99817H42.3524H43.4477V3.28946V2.58075H42.3524H41.2571V3.28946ZM28.8869 4.51386C27.4469 4.77183 26.6209 5.48737 26.3958 6.67195L26.3162 7.09073H27.4637C28.5448 7.09073 28.6136 7.0745 28.6524 6.80944C28.7414 6.20136 30.3431 6.19273 30.5736 6.79913C30.642 6.97914 30.6771 7.14742 30.6514 7.17307C30.6258 7.19884 29.9719 7.27963 29.1982 7.35295C26.878 7.57252 26.3097 7.90484 26.3097 9.04239C26.3097 10.1754 27.2507 10.8089 28.7112 10.6593C29.548 10.5736 30.097 10.2915 30.3888 9.79736C30.7056 9.26132 30.8197 9.31235 30.8197 9.99V10.5699H31.8636H32.9075L32.8584 8.41151C32.8063 6.11541 32.7298 5.79688 32.0865 5.19628C31.4511 4.60289 30.0537 4.30485 28.8869 4.51386ZM37.4558 4.50071C36.6254 4.70907 36.0878 5.19409 35.7922 6.00112L35.6056 6.51087L35.5964 5.51223L35.5874 4.5136H34.5566H33.5257V7.54173V10.5699H34.6115H35.6972L35.739 8.69074C35.7875 6.50675 35.8205 6.44645 36.971 6.44645C37.5316 6.44645 37.7201 6.50572 37.9771 6.76279C38.2818 7.06741 38.2934 7.14305 38.2934 8.8245V10.5699H39.3887H40.484V8.30972C40.484 5.76106 40.3585 5.28738 39.5538 4.79785C39.0722 4.50483 38.0282 4.35704 37.4558 4.50071ZM41.2571 7.54173V10.5699H42.3524H43.4477V7.54173V4.5136H42.3524H41.2571V7.54173ZM29.0802 8.6231C28.7427 8.67438 28.5647 8.76818 28.5647 8.89472C28.5647 9.04703 28.7342 9.08543 29.3649 9.0759C30.1087 9.06456 30.562 8.8924 30.562 8.62129C30.562 8.49823 29.8961 8.49901 29.0802 8.6231Z' fill='%234327B2'/%3e%3c/svg%3e";
 
 /**
  * Browser Image Compression
@@ -4856,11 +4869,11 @@ const WebCamComponent = require$$0.forwardRef(({ setImageFile, setImageSrc, imag
                                         setDisplayCamera(true);
                                     }, className: 'flex-grow basis-10 md:basis-10 text-[#4327B2] border-[#4327B2] border-[1px] px-4 py-1 rounded-md cursor-pointer', children: "Open Camera" }), jsxRuntime.jsxs("div", { className: 'flex-grow basis-10  md:basis-10', children: [jsxRuntime.jsx("input", { type: 'file', id: 'file-input', accept: 'image/*', onChange: handleFileInputChange, className: 'hidden', ...getInputProps() }), jsxRuntime.jsxs("label", { htmlFor: 'file-input', className: 'bg-[#B9AEE7] text-primary flex w-full cursor-pointer items-center justify-center rounded-md p-2 font-medium', children: [jsxRuntime.jsx(CloudUpload, { size: 15, className: 'text-primary mr-2 inline-block ' }), jsxRuntime.jsx("span", { className: 'text-sm', children: " Upload Image" })] })] })] })] })) }))
                 :
-                    jsxRuntime.jsxs("div", { className: 'relative mt-5 flex min-h-[300px] flex-col items-center justify-center rounded-md bg-white p-5', children: [jsxRuntime.jsx("img", { src: imageSrc && imageSrc, alt: 'Selected Image', width: 300, height: 300, className: 'selected-image' }), jsxRuntime.jsx("div", { className: 'flex w-full justify-start', children: jsxRuntime.jsx("button", { onClick: () => setImageSrc(null), className: 'mt-5 text-[#4327B2] border-[#4327B2] border-[1px] px-4 py-1 rounded-md cursor-pointer', children: "Cancel" }) })] })] }));
+                    jsxRuntime.jsxs("div", { className: 'relative mt-5 flex min-h-[300px] flex-col items-center justify-center rounded-md bg-white p-5', children: [jsxRuntime.jsx("img", { src: imageSrc && imageSrc, alt: 'Selected Image', width: 300, height: 300, className: 'selected-image' }), jsxRuntime.jsx("div", { className: 'flex w-full justify-start', children: jsxRuntime.jsx("button", { onClick: () => setImageSrc(null), className: 'mt-5 text-[#4327B2] border-[#4327B2] border-[1px] px-4 py-1 rounded-md cursor-pointer', children: "Cancel" }) })] }), jsxRuntime.jsxs("div", { className: 'flex items-center justify-center gap-2 w-full pt-3', children: [jsxRuntime.jsxs("p", { className: 'font-normal text-[#757575] text-sm ', children: ["Powered by ", " "] }), jsxRuntime.jsx("img", { src: img, alt: 'Tani icon', width: 42.9, height: 14 })] })] }));
 });
 
 const Dialog = ({ children, closeDialog }) => {
-    return (jsxRuntime.jsx("div", { className: 'absolute inset-0 backdrop-blur-2xl flex justify-center items-center', children: jsxRuntime.jsxs("div", { className: 'backdrop-blur-sm p-6 shadow flex flex-col', children: [jsxRuntime.jsx(X, { onClick: closeDialog, className: ' text-black text-xl mb-4 self-end cursor-pointer' }), jsxRuntime.jsx("div", { className: 'bg-white shadow-md p-4 rounded-md mx-auto w-fit lg:w-1/2 h-fit', children: children })] }) }));
+    return (jsxRuntime.jsx("div", { className: 'absolute inset-0 backdrop-blur-2xl flex justify-center items-center', children: jsxRuntime.jsxs("div", { className: 'backdrop-blur-sm p-6 shadow flex flex-col', children: [jsxRuntime.jsx(X, { onClick: closeDialog, className: ' text-black text-xl mb-4 self-end cursor-pointer' }), jsxRuntime.jsx("div", { className: 'bg-white shadow-md p-4 rounded-md mx-auto w-fit h-fit', children: children })] }) }));
 };
 
 function bind(fn, thisArg) {
@@ -11044,9 +11057,9 @@ const VidWebCam = (({ setMessage, setError, setOpenDialog, title, setResult, onS
             }
         };
     }, [displayCamera]);
-    return (jsxRuntime.jsxs("div", { className: 'mx-auto max-w-xl p-8', children: [jsxRuntime.jsx("h5", { children: title || 'Record Video' }), jsxRuntime.jsx("p", { className: 'text-sm text-gray-500', children: "Click to open the camera module and allow the browser to access your camera." }), jsxRuntime.jsx(jsxRuntime.Fragment, { children: displayCamera ? (jsxRuntime.jsxs("div", { className: 'mt-5', children: [jsxRuntime.jsx("div", { className: 'relative flex items-center justify-center', id: 'container', children: jsxRuntime.jsx("div", { className: 'h-full w-3/4', children: jsxRuntime.jsx(CircularProgressbarWithChildren, { value: instructions === 'Please open your mouth'
+    return (jsxRuntime.jsxs("div", { className: 'mx-auto max-w-xl p-8', children: [jsxRuntime.jsx("h5", { children: title || 'Record Video' }), jsxRuntime.jsx("p", { className: 'text-sm text-gray-500', children: "Click to open the camera module and allow the browser to access your camera." }), jsxRuntime.jsx(jsxRuntime.Fragment, { children: displayCamera ? (jsxRuntime.jsxs("div", { className: 'mt-5', children: [jsxRuntime.jsx("div", { className: 'relative flex items-center justify-center', id: 'container', children: jsxRuntime.jsx("div", { className: 'h-full w-3/4', children: jsxRuntime.jsx(CircularProgressbarWithChildren, { value: instructions === 'Please open your mouth 3 times'
                                         ? 33.33
-                                        : instructions === 'Please move your head'
+                                        : instructions === 'Please move your head 3 times'
                                             ? 66.66
                                             : instructions === 'Liveness detection completed!'
                                                 ? 100
@@ -11062,7 +11075,7 @@ const VidWebCam = (({ setMessage, setError, setOpenDialog, title, setResult, onS
                                     e.preventDefault();
                                     e.stopPropagation();
                                     setDisplayCamera(true);
-                                }, className: 'flex-grow basis-10 md:basis-10 hover:bg-[#B9AEE7] text-[#4327B2] border-[#4327B2] border-[1px] px-4 py-2 rounded-md cursor-pointer', children: "Open Camera" }) })] })) })] }));
+                                }, className: 'flex-grow basis-10 md:basis-10 hover:bg-[#B9AEE7] text-[#4327B2] border-[#4327B2] border-[1px] px-4 py-2 rounded-md cursor-pointer', children: "Open Camera" }) })] })) }), jsxRuntime.jsxs("div", { className: 'flex items-center justify-center gap-2 w-full pt-3', children: [jsxRuntime.jsxs("p", { className: 'font-normal text-[#757575] text-sm', children: ["Powered by ", " "] }), jsxRuntime.jsx("img", { src: img, alt: 'Tani icon', width: 42.9, height: 14 })] })] }));
 });
 
 const LivenessCheck = ({ onSuccess }) => {
@@ -11070,7 +11083,7 @@ const LivenessCheck = ({ onSuccess }) => {
     const [error, setError] = require$$0.useState(null);
     const [result, setResult] = require$$0.useState(null);
     const [openDialog, setOpenDialog] = require$$0.useState(false);
-    return (jsxRuntime.jsxs("main", { className: 'flex w-full flex-col p-8 relative', children: [jsxRuntime.jsx("h1", { className: 'font-bold text-xl', children: "Liveness Check" }), jsxRuntime.jsx("div", { className: 'flex-1', children: jsxRuntime.jsx(VidWebCam, { title: 'Start liveness check', setMessage: setMessage, setError: setError, setOpenDialog: setOpenDialog, setResult: setResult, onSuccess: onSuccess }) }), openDialog && jsxRuntime.jsxs(Dialog, { closeDialog: () => { setOpenDialog(false); }, children: [jsxRuntime.jsx("div", { className: 'flex justify-center p-6', children: message && (jsxRuntime.jsxs("div", { className: 'relative flex h-52 w-full px-6 flex-col items-center justify-center rounded-md bg-white', children: [jsxRuntime.jsx("h5", { className: 'mb-2 text-center', children: message }), jsxRuntime.jsxs("div", { children: [jsxRuntime.jsxs("div", { children: [jsxRuntime.jsx("span", { children: jsxRuntime.jsx("input", { type: 'radio', checked: result?.blink_detected, readOnly: true }) }), ' ', jsxRuntime.jsx("span", { children: "Eyes Blink" })] }), jsxRuntime.jsxs("div", { children: [jsxRuntime.jsx("span", { children: jsxRuntime.jsx("input", { type: 'radio', checked: result?.mouth_open_detected, readOnly: true }) }), ' ', jsxRuntime.jsx("span", { children: "Mouth Open" })] }), jsxRuntime.jsxs("div", { children: [jsxRuntime.jsx("span", { children: jsxRuntime.jsx("input", { type: 'radio', checked: result?.head_movement_detected, readOnly: true }) }), ' ', jsxRuntime.jsx("span", { children: "Head Movement" })] }), jsxRuntime.jsxs("div", { children: [jsxRuntime.jsx("span", { children: jsxRuntime.jsx("input", { type: 'radio', checked: result?.is_live, readOnly: true }) }), ' ', jsxRuntime.jsx("span", { children: "Live" })] })] })] })) }), error !== null && (jsxRuntime.jsx("div", { className: 'text-center', children: jsxRuntime.jsx("h5", { className: '', children: error }) }))] })] }));
+    return (jsxRuntime.jsxs("main", { className: 'flex w-full flex-col p-8 relative', children: [jsxRuntime.jsx("h1", { className: 'font-bold text-xl text-center', children: "Liveness Check" }), jsxRuntime.jsx("div", { className: 'flex-1', children: jsxRuntime.jsx(VidWebCam, { title: 'Start liveness check', setMessage: setMessage, setError: setError, setOpenDialog: setOpenDialog, setResult: setResult, onSuccess: onSuccess }) }), openDialog && jsxRuntime.jsxs(Dialog, { closeDialog: () => { setOpenDialog(false); }, children: [jsxRuntime.jsx("div", { className: 'flex justify-center p-6 w-full', children: message && (jsxRuntime.jsxs("div", { className: 'relative flex h-fit w-full px-6 flex-col items-center justify-center rounded-md bg-white', children: [jsxRuntime.jsx("h5", { className: 'mb-2 text-center', children: message }), jsxRuntime.jsxs("div", { children: [jsxRuntime.jsxs("div", { className: 'flex items-center gap-1', children: [jsxRuntime.jsx("span", { children: jsxRuntime.jsx(Check, { strokeWidth: 3, size: 18, className: `font-bold ${result?.blink_detected ? 'text-[#64C155]' : 'text-[#F2F4F7]'}` }) }), ' ', jsxRuntime.jsx("span", { children: "Eyes Blink" })] }), jsxRuntime.jsxs("div", { className: 'flex items-center gap-1', children: [jsxRuntime.jsx("span", { children: jsxRuntime.jsx(Check, { strokeWidth: 3, size: 18, className: `font-bold ${result?.mouth_open_detected ? 'text-[#64C155]' : 'text-[#F2F4F7]'}` }) }), ' ', jsxRuntime.jsx("span", { children: "Mouth Open" })] }), jsxRuntime.jsxs("div", { className: 'flex items-center gap-1', children: [jsxRuntime.jsx("span", { children: jsxRuntime.jsx(Check, { strokeWidth: 3, size: 18, className: `font-bold ${result?.head_movement_detected ? 'text-[#64C155]' : 'text-[#F2F4F7]'}` }) }), ' ', jsxRuntime.jsx("span", { children: "Head Movement" })] }), jsxRuntime.jsxs("div", { className: 'flex items-center gap-1', children: [jsxRuntime.jsx("span", { children: jsxRuntime.jsx(Check, { strokeWidth: 3, size: 18, className: `font-bold ${result?.is_live ? 'text-[#64C155]' : 'text-[#F2F4F7]'}` }) }), ' ', jsxRuntime.jsx("span", { children: "Live" })] })] })] })) }), error !== null && (jsxRuntime.jsx("div", { className: 'text-center', children: jsxRuntime.jsx("h5", { className: '', children: error }) }))] })] }));
 };
 
 class TaniAuth {

@@ -7,6 +7,8 @@ import { SquarePlay } from "lucide-react";
 
 
 import { VidWebCamProps } from '../../types/WebcamTypes';
+import vector from '../../assets/tani_vector.svg'
+
 
 export interface WebcamRef {
   close_camera: () => void;
@@ -132,6 +134,7 @@ const VidWebCam = (
       };
     }, [displayCamera]);
 
+
     return (
       <div className='mx-auto max-w-xl p-8'>
         <h5>{title || 'Record Video'}</h5>
@@ -150,9 +153,9 @@ const VidWebCam = (
                 <div className='h-full w-3/4'>
                   <CircularProgressbarWithChildren
                     value={
-                      instructions === 'Please open your mouth'
+                      instructions === 'Please open your mouth 3 times'
                         ? 33.33
-                        : instructions === 'Please move your head'
+                        : instructions === 'Please move your head 3 times'
                         ? 66.66
                         : instructions === 'Liveness detection completed!'
                         ? 100
@@ -213,6 +216,15 @@ const VidWebCam = (
             </div>
           )}
         </>
+        <div className='flex items-center justify-center gap-2 w-full pt-3'>
+          <p className='font-normal text-[#757575] text-sm'>Powered by {" "}</p>
+          <img
+            src={vector}
+            alt='Tani icon'
+            width={42.9}
+            height={14}
+          />
+        </div>
       </div>
     );
   }
